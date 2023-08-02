@@ -8,6 +8,8 @@ import LoginPage from './LoginPage.jsx';
 import LayoutPage from './layout/LayoutPage.jsx';
 import { AuthProvider } from 'react-auth-kit';
 import HR from './pages/Hr/HR'
+import Dashboard from './pages/dashboard/Dashboard.jsx';
+import TnD from './pages/cts_tnd/TnD.jsx';
 
 const router = createBrowserRouter([
   {
@@ -26,8 +28,16 @@ const router = createBrowserRouter([
     element: <LayoutPage />,
     children: [
       {
+        path:"home",
+        element:<Dashboard/>
+      },
+      {
         path:"hr",
         element:<HR/>
+      },
+      {
+        path:"tnd",
+        element:<TnD/>
       }
     ]
   }

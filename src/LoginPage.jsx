@@ -38,7 +38,7 @@ export default function LoginPage() {
         token: response.data.access_token,
         expiresIn: response.data.expires_in,
         tokenType: response.data.token_type,
-        authState: { username: response.data.user.username }
+        authState: { username: response.data.user.username, roles:response.data.user.roles, role:response.data.user.role }
       })
 
       navigate("/dashboard")
