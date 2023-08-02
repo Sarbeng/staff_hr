@@ -1,36 +1,51 @@
-import React, { Children } from 'react'
+import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
+import App from './LoginPage.jsx'
 import './index.css';
-import {createBrowserRouter,RouterProvider} from "react-router-dom";
-import Root,{rootLoader} from './routes/root.jsx';
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ErrorPage from './error-page.jsx';
-import Contact from './routes/contact.jsx';
+import LoginPage from './LoginPage.jsx';
+import LayoutPage from './layout/LayoutPage.jsx';
+import { AuthProvider } from 'react-auth-kit';
+import HR from './pages/Hr/HR'
 
 const router = createBrowserRouter([
   {
-    path:"/",
-    element:<Root/>,
-    errorElement:<ErrorPage/>,
-    loader:rootLoader,
-    children:[
+    path: "/",
+    element: <LoginPage />,
+    errorElement: <ErrorPage />,
+    children: [
       {
-        path:"contacts/:contactId",
-        element:<Contact/>,
+        path: "contacts/:contactId",
+        element: "",
       }
     ]
   },
-  // {
-  //   path:"contacts/:contactId",
-  //   element:<Contact/>,
-  //   children:[]
-  // }
+  {
+    path: "/dashboard",
+    element: <LayoutPage />,
+    children: [
+      {
+        path:"hr",
+        element:<HR/>
+      }
+    ]
+  }
 ]);
 
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router}/>
+    <AuthProvider
+      authType={'cookie'}
+      authName={'_auth'}
+      cookieDomain={window.location.hostname}
+      //use true when using https
+      cookieSecure={false}
+    >
+      <RouterProvider router={router} />
+    </AuthProvider>
+
   </React.StrictMode>,
 )
