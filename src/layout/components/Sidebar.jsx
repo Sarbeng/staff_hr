@@ -19,10 +19,12 @@ import {useSignOut,useAuthUser} from "react-auth-kit";
 
 
 
+
 export default function Sidebar(props) {
     const activeLink = 'rounded-r-full bg-primary-main text-white'
     const normalLink = ''
-    const [toggle] = useState(false);
+    const [isExpanded,setIsExpanded] = useState(false);
+   
     
     const [testRole, setTestRole] = useState("");
     const auth = useAuthUser();
@@ -124,7 +126,7 @@ export default function Sidebar(props) {
     
 
   return (
-    <aside className={`fixed shadow-md border  left-0 z-40 w-80 h-screen transition-transform  ${toggle == props.toggle == false ? "" : "-translate-x-full sm:translate-x-0 "  }`}>
+    <aside className={`fixed shadow-md border  left-0 z-40 w-80 h-screen transition-transform  ${isExpanded == props.toggle == false ? "" : "-translate-x-full sm:translate-x-0 "  }`}>
       <div
         id="links"
         className="flex flex-col h-full px-8 py-8 overflow-y-scroll bg-white gap-5 dark:bg-gray-800 dark:text-white text-base text-primary-main"
@@ -138,6 +140,7 @@ export default function Sidebar(props) {
           to={navLink.linkTo}
           key={navLink.linkTo}
           className={({isActive}) => isActive ? activeLink: normalLink + "hover:rounded-r-full hover:bg-primary-main hover:text-white" }
+          onClick={props.handleToggle}
           >
             <p className="flex items-center gap-3  py-3 px-4 ">         <span className="text-2xl">{navLink.linkIcon}</span>
           {navLink.linkName}</p>
