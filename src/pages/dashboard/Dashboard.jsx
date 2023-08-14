@@ -5,7 +5,9 @@ export default function Dashboard () {
     return (
         <>
             <DashboardStatistics/>
-            <RecentPromotions/>
+            <section className="mt-10">
+                <RecentPromotions/>
+            </section>
         </>
     );
 }
