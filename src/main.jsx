@@ -6,10 +6,16 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ErrorPage from './error-page.jsx';
 import LoginPage from './LoginPage.jsx';
 import LayoutPage from './layout/LayoutPage.jsx';
-import { AuthProvider } from 'react-auth-kit';
-import HR from './pages/Hr/HR'
+import { AuthProvider, RequireAuth } from 'react-auth-kit';
 import Dashboard from './pages/dashboard/Dashboard.jsx';
 import TnD from './pages/cts_tnd/TnD.jsx';
+import DataEntry from './pages/Hr/data_entry/data_entry.jsx';
+import DataSetup from './pages/Hr/data_setup/data_setup.jsx';
+import PromotionList from './pages/Hr/promotion_list/promotion_list.jsx';
+import PositionAssignment from './pages/Hr/positon_assignment/positon_assignment.jsx';
+import ContractRenewalList from './pages/Hr/contract_renewal_list/contract_renewal_list.jsx';
+import StaffAppraisal from './pages/Hr/staff_appraisal/staff_appraisal.jsx';
+import Establishment from './pages/Hr/establishment/establishment.jsx';
 
 const router = createBrowserRouter([
   {
@@ -25,19 +31,39 @@ const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <LayoutPage />,
+    element: <RequireAuth loginPath='/'><LayoutPage /></RequireAuth>,
     children: [
       {
-        path:"home",
-        element:<Dashboard/>
+        path: "home",
+        element: <Dashboard />
       },
       {
-        path:"hr",
-        element:<HR/>
+        path: "data_entry",
+        element: <DataEntry/>,
+        }
+        
+      ,
+      {
+        path: "data_setup", element: <DataSetup/>
       },
       {
-        path:"tnd",
-        element:<TnD/>
+        path: "promotion_list", element: <PromotionList/>
+      },
+      {
+        path: "postion_assignment", element: <PositionAssignment/>
+      },
+      {
+        path: "contract_renewal", element: <ContractRenewalList/>
+      },
+      {
+        path: "staff_appraisal", element: <StaffAppraisal/>
+      },
+      {
+        path: "establishment", element: <Establishment/>
+      },
+      {
+        path: "tnd",
+        element: <TnD />
       }
     ]
   }

@@ -2,9 +2,16 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { useEffect, useState} from "react";
 import {
   MdOutlineDashboard,
-  MdOutlinePerson,
   MdOutlineWorkOff,
   MdOutlineLogout,
+  MdOutlineModeEdit,
+  MdOutlineSettings,
+  MdOutlineList,
+  MdOutlineAddChart,
+  MdOutlineAppRegistration,
+ 
+  MdOutlineHomeWork,
+  MdOutlineChangeHistory,
 } from "react-icons/md";
 import {useSignOut,useAuthUser} from "react-auth-kit";
 
@@ -16,6 +23,7 @@ export default function Sidebar(props) {
     const activeLink = 'rounded-r-full bg-primary-main text-white'
     const normalLink = ''
     const [toggle] = useState(false);
+    
     const [testRole, setTestRole] = useState("");
     const auth = useAuthUser();
     useEffect(()=>{
@@ -62,31 +70,40 @@ export default function Sidebar(props) {
         linkTo:"/dashboard/home"
       },
       {
-        linkName:"HR",
-        linkIcon: <MdOutlinePerson/>,
-        linkTo:"/dashboard/hr"
-      }
-      ,
-      // {
-      //   linkName:"Cts & Tnd",
-      //   linkIcon: <MdOutlineWorkOff/>,
-      //   linkTo:"/dashboard/tnd"
-      // },
-      // {
-      //   linkName:"Appraisal",
-      //   linkIcon: <MdOutlineBallot/>,
-      //   linkTo:"/appraisal"
-      // },
-      // {
-      //   linkName:"Promotion",
-      //   linkIcon: <MdOutlineStackedLineChart/>,
-      //   linkTo:"/promotion"
-      // },
-      // {
-      //   linkName:"Procurement",
-      //   linkIcon: <MdOutlineShoppingBag/>,
-      //   linkTo:"/procurement"
-      // },
+        linkName:"Data Entry",
+        linkIcon: <MdOutlineModeEdit/>,
+        linkTo:"/dashboard/data_entry"
+      },
+      {
+        linkName:"Data Setup",
+        linkIcon: <MdOutlineSettings/>,
+        linkTo:"/dashboard/data_setup"
+      },
+      {
+        linkName:"Promotion List",
+        linkIcon: <MdOutlineList/>,
+        linkTo:"/dashboard/promotion_list"
+      },
+      {
+        linkName:"Postion Assignment",
+        linkIcon: <MdOutlineChangeHistory/>,
+        linkTo:"/dashboard/postion_assignment"
+      },
+      {
+        linkName:"Contract Renewal",
+        linkIcon: <MdOutlineAddChart/>,
+        linkTo:"/dashboard/contract_renewal"
+      },
+      {
+        linkName:"Staff Appraisal",
+        linkIcon: <MdOutlineAppRegistration/>,
+        linkTo:"/dashboard/staff_appraisal"
+      },
+      {
+        linkName:"Establishment",
+        linkIcon: <MdOutlineHomeWork/>,
+        linkTo:"/dashboard/establishment"
+      },
       
     ]
 
@@ -110,10 +127,11 @@ export default function Sidebar(props) {
     <aside className={`fixed shadow-md border  left-0 z-40 w-80 h-screen transition-transform  ${toggle == props.toggle == false ? "" : "-translate-x-full sm:translate-x-0 "  }`}>
       <div
         id="links"
-        className="flex flex-col h-full px-8 py-8 overflow-y-auto bg-white gap-5 dark:bg-gray-800 dark:text-white text-base text-primary-main  "
+        className="flex flex-col h-full px-8 py-8 overflow-y-scroll bg-white gap-5 dark:bg-gray-800 dark:text-white text-base text-primary-main"
       >
         
-        { testRole === "HR" ? 
+    
+       { testRole === "HR" ? 
           hrLinks.map((navLink)=>{
             return (
               <NavLink

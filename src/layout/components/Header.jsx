@@ -1,6 +1,6 @@
 import { useState} from "react";
 import UccLogo from "../../assets/UccLogo";
-import { MdOutlineArrowDropDown, MdOutlineMenu } from "react-icons/md";
+import { MdOutlineArrowDropDown, MdOutlineClose, MdOutlineMenu } from "react-icons/md";
 import Sidebar from "./Sidebar";
 import {useAuthUser} from "react-auth-kit"
 
@@ -10,6 +10,7 @@ import {useAuthUser} from "react-auth-kit"
 
 export default function Header() {
   const [showModal, setShowModal] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false)
 
   // function to display the dropdown menu
   const showDropdown = () => {
@@ -25,6 +26,7 @@ export default function Header() {
   const [toggle,setToggle] = useState(false)
   const toggleSidebar = () => {
         setToggle(!toggle)
+        setIsExpanded(!isExpanded)
     }
     
    const auth = useAuthUser();
@@ -52,7 +54,9 @@ export default function Header() {
             </div>
           </button>
           <button className={` visible  lg:invisible px-6 py-6 z-10 absolute right-5`} onClick={toggleSidebar}>
-            <MdOutlineMenu style={{ fontSize: "1.5rem" }} />
+            {
+              isExpanded ? <span className="text-2xl"><MdOutlineMenu  /></span> : <span className="text-2xl"><MdOutlineClose  /></span> 
+            }
           </button>
           <div
             id="dropdown"
