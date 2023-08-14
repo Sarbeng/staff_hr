@@ -1,7 +1,9 @@
+import DashboardStatistics from "./components/dashboard_statistics";
+
 export default function Dashboard () {
     return (
         <>
-            Dashboard page
+            <DashboardStatistics/>
         </>
     );
 }

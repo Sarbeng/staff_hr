@@ -23,7 +23,7 @@ import {useSignOut,useAuthUser} from "react-auth-kit";
 export default function Sidebar(props) {
     const activeLink = 'rounded-r-full bg-primary-main text-white'
     const normalLink = ''
-    const [isExpanded,setIsExpanded] = useState(false);
+    const [isExpanded] = useState(false);
    
     
     const [testRole, setTestRole] = useState("");
