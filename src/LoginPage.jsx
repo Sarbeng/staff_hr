@@ -41,7 +41,7 @@ export default function LoginPage() {
         authState: { username: response.data.user.username, roles:response.data.user.roles, role:response.data.user.role }
       })
 
-      navigate("/dashboard")
+      navigate("/dashboard/home")
     }
   }
 

@@ -13,15 +13,15 @@
     return (
       <div id="inputGroup" >
         <label className="capitalize" htmlFor="email">
-          {props.label}
+          {props?.label}
         </label>
         <input
-          className={`${props.Style} ${props.inputStyle =="error" ? errortStyle : defaultStyle} `}
-          name={props.name}
-          type={props.type}
-          value={props.value}
-          ref={props.ref}
-          onChange={props.handleChange}
+          className={`${props?.Style} ${props?.inputStyle =="error" ? errortStyle : defaultStyle} `}
+          name={props?.name}
+          type={props?.type}
+          value={props?.value}
+          ref={props?.ref}
+          onChange={props?.handleChange}
           // eslint-disable-next-line react/prop-types
           onBlur={props.handleBlur}
           

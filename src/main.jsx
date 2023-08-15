@@ -22,16 +22,10 @@ const router = createBrowserRouter([
     path: "/",
     element: <LoginPage />,
     errorElement: <ErrorPage />,
-    children: [
-      {
-        path: "contacts/:contactId",
-        element: "",
-      }
-    ]
   },
   {
     path: "/dashboard",
-    element: <RequireAuth loginPath='/'><LayoutPage /></RequireAuth>,
+    element: <RequireAuth loginPath='/'><LayoutPage><Dashboard /></LayoutPage></RequireAuth>,
     children: [
       {
         path: "home",

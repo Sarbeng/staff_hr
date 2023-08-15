@@ -1,7 +1,10 @@
+import promotionDetails from "../../../data/initialDetails";
+import Search from "./components/search";
+
 export default function PromotionList () {
     return (
         <>
-            Promotion List Pages
+            <Search details={promotionDetails}/>
         </>
     );
 }
