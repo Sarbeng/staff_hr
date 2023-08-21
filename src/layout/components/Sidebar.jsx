@@ -25,44 +25,45 @@ export default function Sidebar(props) {
     const normalLink = ''
     const [isExpanded] = useState(false);
    
+    //this section is used to check for the role of the user, currently not using it so we'll see
     
-    const [testRole, setTestRole] = useState("");
-    const auth = useAuthUser();
-    useEffect(()=>{
-       let role = auth().role;
-       if (role == "08"){
-        setTestRole("HR")
-        console.log(testRole,role)
-       }
-       else if (role == "07"){
-        setTestRole("HR")
-        console.log(testRole,role)
-       }
-       else if (role == "06"){
-        setTestRole("HR")
-        console.log(testRole,role)
-       }
-       else if (role == "05"){
-        setTestRole("HR")
-        console.log(testRole,role)
-       }
-       else if (role == "04"){
-        setTestRole("HR")
-        console.log(testRole,role)
-       }
-       else if (role == "03"){
-        setTestRole("tnD")
-        console.log(testRole,role)
-       }
-       else if (role == "02"){
-        setTestRole("tnD")
-        console.log(testRole,role)
-       }
-       else if (role == "01"){
-        setTestRole("tnD")
-        console.log(testRole,role)
-       }
-    },[])
+     const [testRole, setTestRole] = useState("HR");
+    // const auth = useAuthUser();
+    // useEffect(()=>{
+    //    let role = auth().role;
+    //    if (role == "08"){
+    //     setTestRole("HR")
+    //     console.log(testRole,role)
+    //    }
+    //    else if (role == "07"){
+    //     setTestRole("HR")
+    //     console.log(testRole,role)
+    //    }
+    //    else if (role == "06"){
+    //     setTestRole("HR")
+    //     console.log(testRole,role)
+    //    }
+    //    else if (role == "05"){
+    //     setTestRole("HR")
+    //     console.log(testRole,role)
+    //    }
+    //    else if (role == "04"){
+    //     setTestRole("HR")
+    //     console.log(testRole,role)
+    //    }
+    //    else if (role == "03"){
+    //     setTestRole("tnD")
+    //     console.log(testRole,role)
+    //    }
+    //    else if (role == "02"){
+    //     setTestRole("tnD")
+    //     console.log(testRole,role)
+    //    }
+    //    else if (role == "01"){
+    //     setTestRole("tnD")
+    //     console.log(testRole,role)
+    //    }
+    // },[])
     
 
     const hrLinks = [

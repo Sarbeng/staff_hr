@@ -2,7 +2,7 @@ import { useState } from "react";
 import SearchList from "./search_list";
 import TextInput from "../../../../components/TextInput";
 
-export default function Search ({details}) {
+export default function Search ({details,labelName}) {
     const [searchField, setSearchField] = useState("")
 
     const filteredPersons = details.filter((person) => {
@@ -27,7 +27,7 @@ export default function Search ({details}) {
         <h2 className="text-xl">Search for name of person</h2>
       </div> */}
       <div id="inputGroup" className="mb-8">        
-        <TextInput label={"Search People"} handleChange={handleChange}/>
+        <TextInput label={labelName} handleChange={handleChange}/>
       </div>
       {searchList()}
     </section>

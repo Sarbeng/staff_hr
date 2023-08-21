@@ -25,7 +25,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <RequireAuth loginPath='/'><LayoutPage><Dashboard /></LayoutPage></RequireAuth>,
+    element: <LayoutPage/>,
     children: [
       {
         path: "home",

@@ -20,30 +20,36 @@ export default function LoginPage() {
 
   const navigate = useNavigate();
 
-  const onSubmit = async (values) => {
-    setError(null)
-    //connecting to the logiin api
-    const response = await axios.post('http://127.0.0.1:8000/api/auth/login', values).catch((err) => {
-      if (err) {
-        setError(err.response.data.error)
-        console.log(err.response.data.error)
-      }
-    })
-    if (response) {
-      // alert("Welcome Back in. Authenticating...")
-
-
-
-      signIn({
-        token: response.data.access_token,
-        expiresIn: response.data.expires_in,
-        tokenType: response.data.token_type,
-        authState: { username: response.data.user.username, roles:response.data.user.roles, role:response.data.user.role }
-      })
-
-      navigate("/dashboard/home")
-    }
+  const onSubmit = (values) => {
+    console.log(values);
+    alert(JSON.stringify(values,null,2))
+    navigate('/dashboard/home')
   }
+
+  // const onSubmit = async (values) => {
+  //   setError(null)
+  //   //connecting to the logiin api
+  //   const response = await axios.post('http://127.0.0.1:8000/api/auth/login', values).catch((err) => {
+  //     if (err) {
+  //       setError(err.response.data.error)
+  //       console.log(err.response.data.error)
+  //     }
+  //   })
+  //   if (response) {
+  //     // alert("Welcome Back in. Authenticating...")
+
+
+
+  //     signIn({
+  //       token: response.data.access_token,
+  //       expiresIn: response.data.expires_in,
+  //       tokenType: response.data.token_type,
+  //       authState: { username: response.data.user.username, roles:response.data.user.roles, role:response.data.user.role }
+  //     })
+
+  //     navigate("/dashboard/home")
+  //   }
+  // }
 
   const formik = useFormik({
     initialValues: {
