@@ -1,85 +1,83 @@
+
+import { BsSend } from "react-icons/bs"; 
 import ApplicationCard from "../../../components/ApplicationCard";
-import { MdOutlinePerson4 } from "react-icons/md"
+import {  MdOutlineLibraryBooks, MdOutlineMenuBook, MdOutlineNewspaper, MdOutlinePages, MdOutlinePeople,  MdOutlineReport, MdOutlineSafetyDivider, MdOutlineStackedBarChart, MdOutlineStackedLineChart, MdOutlineWorkOff, MdOutlineWorkOutline, MdOutlineWorkspaces } from "react-icons/md";
+import { FaPeopleArrows } from "react-icons/fa"
 export default function DataEntry() {
     const cardCollection = [
         {
             id: 1,
             heading: "Staff",
             to: "/dashboard/data_entry/staff",
-            icon: <MdOutlinePerson4 />,
+            icon: <FaPeopleArrows/>,
         },
         {
             id: 2,
             heading: "Leave",
             to: "/dashboard/data_entry/leave",
-            icon: <MdOutlinePerson4 />,
+            icon: <MdOutlineWorkOff />,
         },
         {
             id: 3,
             heading: "Elevation",
             to: "/dashboard/data_entry/elevation",
-            icon: <MdOutlinePerson4 />,
+            icon: <MdOutlineStackedBarChart />,
         },
         {
             id: 4,
             heading: "Transfer",
             to: "/dashboard/data_entry/transfer",
-            icon: <MdOutlinePerson4 />,
+            icon: <BsSend />,
         }, {
             id: 5,
             heading: "Study Leave",
             to: "/dashboard/data_entry/study_leave",
-            icon: <MdOutlinePerson4 />,
+            icon: <MdOutlineLibraryBooks />,
         }, {
             id: 6,
             heading: "Nss",
             to: "/dashboard/data_entry/nss",
-            icon: <MdOutlinePerson4 />,
+            icon: <MdOutlinePeople />,
         }, {
             id: 7,
             heading: "Workspace",
             to: "/dashboard/data_entry/workspace",
-            icon: <MdOutlinePerson4 />,
+            icon: <MdOutlineWorkspaces />,
         },
+      
         {
             id: 8,
-            heading: "Staff",
-            to: "/dashboard/data_entry/staff",
-            icon: <MdOutlinePerson4 />,
+            heading: "Disciplinary",
+            to: "/dashboard/data_entry/disciplinary",
+            icon: <MdOutlineSafetyDivider />,
         },
         {
             id: 9,
-            heading: "Disciplinary",
-            to: "/dashboard/data_entry/disciplinary",
-            icon: <MdOutlinePerson4 />,
-        },
-        {
-            id: 10,
             heading: "Circular",
             to: "/dashboard/data_entry/circular",
-            icon: <MdOutlinePerson4 />,
+            icon: <MdOutlineNewspaper />,
         }, {
-            id: 11,
+            id: 10,
             heading: "Papers",
             to: "/dashboard/data_entry/papers",
-            icon: <MdOutlinePerson4 />,
+            icon: <MdOutlinePages />,
         },  {
-            id: 12,
+            id: 11,
             heading: "Documents",
             to: "/dashboard/data_entry/documents",
-            icon: <MdOutlinePerson4 />,
+            icon: <MdOutlineMenuBook />,
+        },
+        {
+            id: 12,
+            heading: "Promotions",
+            to: "/dashboard/data_entry/promotions",
+            icon: <MdOutlineStackedLineChart />,
         },
         {
             id: 13,
-            heading: "Promotions",
-            to: "/dashboard/data_entry/promotions",
-            icon: <MdOutlinePerson4 />,
-        },
-        {
-            id: 14,
             heading: "Reports",
             to: "/dashboard/data_entry/reports",
-            icon: <MdOutlinePerson4 />,
+            icon: <MdOutlineReport />,
         }
     ]
     return (
