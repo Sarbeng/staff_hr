@@ -26,7 +26,20 @@ import StudyLeave from './pages/Hr/data_entry/pages/study_leave.jsx';
 import Transfer from './pages/Hr/data_entry/pages/transfer.jsx';
 import Workspace from './pages/Hr/data_entry/pages/workspace.jsx';
 
+// importing pages from the data setup folder
 import DataSetup from './pages/Hr/data_setup/data_setup.jsx';
+import Units from './pages/Hr/data_setup/pages/units.jsx';
+import Designation from './pages/Hr/data_setup/pages/designation.jsx';
+import Dob from './pages/Hr/data_setup/pages/dob.jsx';
+import Education from './pages/Hr/data_setup/pages/education.jsx';
+import Grades from './pages/Hr/data_setup/pages/grades.jsx';
+import Inbox from './pages/Hr/data_setup/pages/inbox.jsx';
+import Location from './pages/Hr/data_setup/pages/location.jsx';
+import Logs from './pages/Hr/data_setup/pages/logs.jsx';
+import Photos from './pages/Hr/data_setup/pages/photos.jsx';
+import Position from './pages/Hr/data_setup/pages/position.jsx';
+import Roles from './pages/Hr/data_setup/pages/roles.jsx';
+
 import PromotionList from './pages/Hr/promotion_list/promotion_list.jsx';
 import PositionAssignment from './pages/Hr/positon_assignment/positon_assignment.jsx';
 import ContractRenewalList from './pages/Hr/contract_renewal_list/contract_renewal_list.jsx';
@@ -111,7 +124,34 @@ const router = createBrowserRouter([
         path: "data_setup", element: <DataSetup/>
       },
       {
-        path: "data_setup/units", element: <DataSetup/>
+        path: "data_setup/units", element: <Units/>
+      },
+      {
+        path: "data_setup/roles", element: <Roles/>
+      },
+      {
+        path: "data_setup/position", element: <Position/>
+      },
+      {
+        path: "data_setup/photos", element: <Photos/>
+      },
+      {
+        path: "data_setup/logs", element: <Logs/>
+      },
+      {
+        path: "data_setup/location", element: <Location/>
+      },
+      {
+        path: "data_setup/grades", element: <Grades/>
+      },
+      {
+        path: "data_setup/education", element: <Education/>
+      },
+      {
+        path: "data_setup/dob", element: <Dob/>
+      },
+      {
+        path: "data_setup/designation", element: <Designation/>
       },
       // end of data setup routes
       {
