@@ -111,6 +111,10 @@ const router = createBrowserRouter([
         path: "data_setup", element: <DataSetup/>
       },
       {
+        path: "data_setup/units", element: <DataSetup/>
+      },
+      // end of data setup routes
+      {
         path: "promotion_list", element: <PromotionList/>
       },
       {
