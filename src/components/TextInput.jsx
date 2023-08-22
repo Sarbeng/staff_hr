@@ -1,6 +1,6 @@
 
   
-  export default function TextInput(props) {
+  export default function TextInput({label, Style, inputStyle, value, ref, handleChange, handleBlur, htmlFor, type, name}) {
     
     // style for the default state
     const defaultStyle = "mt-2 mb-2 h-12 border border-primary-border rounded-lg w-full py-2 px-3 text-primary-main focus:outline-none  focus:border-primary-focused focus:ring-1 shadow-sm focus:ring-primary-focused  bg-white ";
@@ -13,17 +13,17 @@
     return (
       <div id="inputGroup" >
         <label className="capitalize" htmlFor="email">
-          {props?.label}
+          {label}
         </label>
         <input
-          className={`${props?.Style} ${props?.inputStyle =="error" ? errortStyle : defaultStyle} `}
-          name={props?.name}
-          type={props?.type}
-          value={props?.value}
-          ref={props?.ref}
-          onChange={props?.handleChange}
+          className={`${Style} ${inputStyle =="error" ? errortStyle : defaultStyle} `}
+          name={name}
+          type={type}
+          value={value}
+          ref={ref}
+          onChange={handleChange}
           // eslint-disable-next-line react/prop-types
-          onBlur={props.handleBlur}
+          onBlur={handleBlur}
           
         />
       </div>
