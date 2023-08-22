@@ -1,10 +1,11 @@
-import Search from "../promotion_list/components/search";
+import Search from "./components/search";
 import appraisalDetails from "../../../data/appraisalDetails"
+import AppraisalSearch from "./components/search";
 
 export default function StaffAppraisal () {
     return (
         <>
-            <Search labelName={"Search using name/Staff number"} details={appraisalDetails}/>
+            <AppraisalSearch labelName={"Search using name/Staff number"} details={appraisalDetails}/>
         </>
     );
 }

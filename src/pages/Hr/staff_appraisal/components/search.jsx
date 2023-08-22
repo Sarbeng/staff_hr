@@ -2,7 +2,7 @@ import { useState } from "react";
 import SearchList from "./search_list";
 import TextInput from "../../../../components/TextInput";
 
-export default function Search ({details,labelName }) {
+export default function AppraisalSearch ({details,labelName }) {
     const [searchField, setSearchField] = useState("")
 
     const filteredPersons = details.filter((person) => {

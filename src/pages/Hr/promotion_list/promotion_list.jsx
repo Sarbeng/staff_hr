@@ -4,7 +4,7 @@ import Search from "./components/search";
 export default function PromotionList () {
     return (
         <>
-            <Search labelName={"Search using name/staff number"} details={promotionDetails}/>
+            <Search labelName={"Search using name/staff number"} details={promotionDetails} />
         </>
     );
 }
