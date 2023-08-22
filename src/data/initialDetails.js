@@ -43,4 +43,7 @@ const promotionDetails = [
     }
 ]
 
-export default promotionDetails;
+
+
+
+export default promotionDetails; 
