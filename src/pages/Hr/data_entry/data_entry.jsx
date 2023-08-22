@@ -44,7 +44,6 @@ export default function DataEntry() {
             to: "/dashboard/data_entry/workspace",
             icon: <MdOutlineWorkspaces />,
         },
-      
         {
             id: 8,
             heading: "Disciplinary",
