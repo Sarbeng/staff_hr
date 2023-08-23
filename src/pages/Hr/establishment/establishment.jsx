@@ -1,7 +1,10 @@
+import establishmentDetails from "../../../data/establishmentDetails";
+import EstablishmentSearch from "./components/search";
+
 export default function Establishment () {
     return (
         <>
-            Establishment Pages
+            <EstablishmentSearch labelName={"Select Establishments"} details={establishmentDetails}/>
         </>
     );
 }
