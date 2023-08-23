@@ -151,7 +151,7 @@ const router = createBrowserRouter([
         path: "data_setup/dob", element: <Dob/>
       },
       {
-        path: "data_setup/designation", element: <Designation/>
+        path: "data_setup/designations", element: <Designation/>
       },
       // end of data setup routes
       {
