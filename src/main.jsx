@@ -1,6 +1,5 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './LoginPage.jsx'
 import './index.css';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ErrorPage from './error-page.jsx';
@@ -45,6 +44,44 @@ import PositionAssignment from './pages/Hr/positon_assignment/positon_assignment
 import ContractRenewalList from './pages/Hr/contract_renewal_list/contract_renewal_list.jsx';
 import StaffAppraisal from './pages/Hr/staff_appraisal/staff_appraisal.jsx';
 import Establishment from './pages/Hr/establishment/establishment.jsx';
+
+//normal staff portal pages
+import HomePage from "./pages/staff/home/HomePage.jsx"
+import PersonalDetails from "./pages/staff/personal_details/PersonalDetails.jsx"
+import StaffLeavePage from "./pages/staff/leave/LeavePage.jsx"
+import Promotion from "./pages/staff/promotion/Promotion.jsx"
+// staff promotion form pages
+import PromotionPage1 from "./pages/staff/promotion/pages/PromotionPage1.jsx"
+import PromotionPage2 from "./pages/staff/promotion/pages/PromotionPage2.jsx"
+import PromotionPage3 from "./pages/staff/promotion/pages/PromotionPage3.jsx"
+import PromotionPage4 from "./pages/staff/promotion/pages/PromotionPage4.jsx"
+import PromotionPage5 from "./pages/staff/promotion/pages/PromotionPage5.jsx"
+import PromotionDocUpload from "./pages/staff/promotion/pages/PromotionDocUpload.jsx"
+
+// staff appraisal pages
+import Appraisal from "./pages/staff/appraisal/Appraisal.jsx"
+import AppraisalPage1 from "./pages/staff/appraisal/pages/AppraisalPage1.jsx"
+import AppraisalPage2 from "./pages/staff/appraisal/pages/AppraisalPage2.jsx"
+import AppraisalPage3 from "./pages/staff/appraisal/pages/AppraisalPage3.jsx"
+
+//hod appraisal pages
+import AppraisalFormBPage1 from "./pages/hod/appraisal/AppraisalFormBPage1.jsx"
+import AppraisalFormBPage2 from "./pages/hod/appraisal/AppraisalFormBPage2.jsx"
+import AppraisalFormBPage3 from "./pages/hod/appraisal/AppraisalFormBPage3.jsx"
+import AppraisalFormBPage4 from "./pages/hod/appraisal/AppraisalFormBPage4.jsx"
+import AppraisalFormBPage5 from "./pages/hod/appraisal/AppraisalFormBPage5.jsx"
+import AppraisalFormBPage6 from "./pages/hod/appraisal/AppraisalFormBPage6.jsx"
+import AppraisalFormBPage7 from "./pages/hod/appraisal/AppraisalFormBPage7.jsx"
+import AppraisalFormBPage8 from "./pages/hod/appraisal/AppraisalFormBPage8.jsx"
+import AppraisalFormBPage9 from "./pages/hod/appraisal/AppraisalFormBPage9.jsx"
+import AppraisalFormBPage10 from "./pages/hod/appraisal/AppraisalFormBPage10.jsx"
+import AppraisalFormBPage11 from "./pages/hod/appraisal/AppraisalFormBPage11.jsx"
+import AppraisalFormBPage12 from "./pages/hod/appraisal/AppraisalFormBPage12.jsx"
+import AppraisalFormBPage13 from "./pages/hod/appraisal/AppraisalFormBPage13.jsx"
+
+//staff procurement pages
+import Procurement from './pages/staff/procurement/Procurement.jsx';
+import ProcurementRequest from './pages/staff/procurement/compnents/ProcurementRequest.jsx';
 
 const router = createBrowserRouter([
   {
@@ -197,7 +234,7 @@ const router = createBrowserRouter([
       },
       {
         path:'leave',
-        element:<LeavePage/>
+        element:<StaffLeavePage/>
       },
       //start promotion pages
       {
