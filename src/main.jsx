@@ -53,7 +53,7 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
   },
   {
-    path: "/dashboard",
+    path: "/hr",
     element: <LayoutPage/>,
     children: [
       {
@@ -153,6 +153,9 @@ const router = createBrowserRouter([
       {
         path: "data_setup/designations", element: <Designation/>
       },
+      {
+        path: "data_setup/inbox", element: <Inbox/>
+      },
       // end of data setup routes
       {
         path: "promotion_list", element: <PromotionList/>
@@ -169,12 +172,150 @@ const router = createBrowserRouter([
       {
         path: "establishment", element: <Establishment/>
       },
+      
+
+     
       {
         path: "tnd",
         element: <TnD />
       }
+    ],
+    
+  },
+  // start of reguar staff protal pages
+  {
+    path:"/dashboard",
+    element:<LayoutPage/>,
+    children: [
+      {
+        path:'home',
+        element:<HomePage/>
+      },
+      {
+        path:'personalDetails',
+        element:<PersonalDetails/>
+      },
+      {
+        path:'leave',
+        element:<LeavePage/>
+      },
+      //start promotion pages
+      {
+        path:'promotion',
+        element:<Promotion />
+      },
+      {
+        path:'promotion',
+        element:<Promotion />
+      },
+      {
+        path:'promotionpage1',
+        element:<PromotionPage1 />
+      },
+      {
+        path:'promotionpage2',
+        element:<PromotionPage2 />
+      },
+      {
+        path:'promotionpage3',
+        element:<PromotionPage3 />
+      },
+      {
+        path:'promotionpage4',
+        element:<PromotionPage4 />
+      },
+      {
+        path:'promotionpage5',
+        element:<PromotionPage5 />
+      },
+      {
+        path:'promotionDocUpload',
+        element:<PromotionDocUpload />
+      },
+       //end promotion pages
+        //start appraisal pages
+        {
+          path:'appraisal',
+          element:<Appraisal />
+        },
+        {
+          path:'appraisalPage1',
+          element:<AppraisalPage1 />
+        },
+        {
+          path:'appraisalPage2',
+          element:<AppraisalPage2/>
+        },
+        {
+          path:'appraisalPage3',
+          element:<AppraisalPage3 />
+        },
+        //start of hod_appraisal pages
+        {
+          path:'hod_appraisalPage1',
+          element:<AppraisalFormBPage1 />
+        },
+        {
+          path:'hod_appraisalPage2',
+          element:<AppraisalFormBPage2 />
+        },
+        {
+          path:'hod_appraisalPage3',
+          element:<AppraisalFormBPage3 />
+        },
+        {
+          path:'hod_appraisalPage4',
+          element:<AppraisalFormBPage4 />
+        },
+        {
+          path:'hod_appraisalPage5',
+          element:<AppraisalFormBPage5 />
+        },
+        {
+          path:'hod_appraisalPage6',
+          element:<AppraisalFormBPage6 />
+        },
+        {
+          path:'hod_appraisalPage7',
+          element:<AppraisalFormBPage7 />
+        },
+        {
+          path:'hod_appraisalPage8',
+          element:<AppraisalFormBPage8 />
+        },
+        {
+          path:'hod_appraisalPage9',
+          element:<AppraisalFormBPage9 />
+        },
+        {
+          path:'hod_appraisalPage10',
+          element:<AppraisalFormBPage10 />
+        },
+        {
+          path:'hod_appraisalPage11',
+          element:<AppraisalFormBPage11 />
+        },
+        {
+          path:'hod_appraisalPage12',
+          element:<AppraisalFormBPage12 />
+        },
+        {
+          path:'hod_appraisalPage13',
+          element:<AppraisalFormBPage13 />
+        },
+        //end of hod_appraisal pages
+        //start of procurement
+        {
+          path:'procurement',
+          element:<Procurement />
+        },
+        {
+          path:'procurementRequest',
+          element:<ProcurementRequest />
+        },
     ]
-  }
+  },
+   // end of reguar staff protal pages
 ]);
 
 

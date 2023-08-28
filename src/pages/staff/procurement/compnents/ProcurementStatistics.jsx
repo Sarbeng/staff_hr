@@ -13,9 +13,9 @@ export default function ProcurementStatistics() {
   return (
     <div className="flex gap-8 items-center justify-start overflow-scroll">
       <div className="py-8 flex gap-4 md:gap-8 ">
-        {statistics.map((statistics: any) => {
+        {statistics.map((statistics) => {
           return (
-            <div className="bg-white shadow-sm p-5 border border-primary-border rounded-lg w-56">
+            <div key={""} className="bg-white shadow-sm p-5 border border-primary-border rounded-lg w-56">
               <div className="flex flex-col place-items-center items-center gap-8">
                 <h3 className="text-base h-14 text-center">
                   {statistics.heading}

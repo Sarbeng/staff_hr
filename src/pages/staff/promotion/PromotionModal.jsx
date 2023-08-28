@@ -6,12 +6,9 @@ import { useFormik } from "formik"
 import Button from "../../components/Button";
 import SelectInput from "../../components/SelectInput";
 
-interface Props {
-  showModal?: boolean;
-  handleModal?: React.MouseEventHandler<HTMLButtonElement> | undefined;
-}
 
-export default function PromotionModal(props: Props) {
+
+export default function PromotionModal(props) {
 
 
   const formik = useFormik({

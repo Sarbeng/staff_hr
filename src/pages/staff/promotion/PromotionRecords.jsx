@@ -43,7 +43,7 @@ export default function PromotionRecords() {
           {
             promotionRecords.map(() => {
               return (
-                <div className="py-4">
+                <div className="py-4" key={""}>
 
                   <div className="mb-4 overflow-scroll">
                     <div className="flex gap-5 h-36 p-4 shadow-sm bg-white w-fit rounded-lg border items-center">
