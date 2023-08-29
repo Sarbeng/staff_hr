@@ -1,6 +1,6 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import {  useState } from "react";
-import {  MdOutlineHail, MdOutlineHeadphones, MdOutlineLogout, MdOutlinePeopleOutline, MdOutlineSubject, MdOutlineSupervisorAccount, MdOutlineTrackChanges, MdOutlineViewHeadline, } from "react-icons/md"
+import {  MdOutlineHail,  MdOutlineLogout, MdOutlinePeopleOutline,  MdOutlineTrackChanges,  } from "react-icons/md"
 import { useSignOut, useAuthUser } from "react-auth-kit";
 import MainNav from "./sidebarComponents/MainNav";
 import HrNav from "./sidebarComponents/HRNav";
