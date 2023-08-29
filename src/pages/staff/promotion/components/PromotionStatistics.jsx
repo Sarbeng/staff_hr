@@ -1,5 +1,5 @@
 import {  MdOutlineBubbleChart } from "react-icons/md";
-import ApplyButton from "../../components/ApplyButton";
+import ApplyButton from "../../../../components/ApplicationCard";
 //import {useNavigate} from "react-router-dom"
 
 export default function PromotionStatistics () {

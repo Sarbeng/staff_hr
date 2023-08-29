@@ -1,6 +1,6 @@
 
-import ProcurementRecords from "./ProcurementRecords";
-import ProcurementStatistics from "./ProcurementStatistics";
+import ProcurementRecords from "./compnents/ProcurementRecords";
+import ProcurementStatistics from "./compnents/ProcurementStatistics";
 
 export default function Procurement () {
     return (

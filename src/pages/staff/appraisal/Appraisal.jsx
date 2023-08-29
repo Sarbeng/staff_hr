@@ -1,11 +1,11 @@
 
 import { MdOutlineBallot, } from "react-icons/md";
-import CurrentAppraisal from "./CurrentAppraisal";
-import PreviousAppraisals from "./PreviousAppraisal";
-import NoAppraisal from "./NoAppraisal";
-import ApplyButton from "../../components/ApplyButton";
+import CurrentAppraisal from "./components/CurrentAppraisal";
+import PreviousAppraisals from "./components/components/PreviousAppraisal";
+import NoAppraisal from "./components/NoAppraisal";
+import ApplyButton from "../../../components/ApplicationCard";
 import { useEffect, useState } from "react";
-import AppraisalsPendingReview from "./AppraisalsPendingReview";
+import AppraisalsPendingReview from "./components/AppraisalsPendingReview";
 
 export default function Appraisal () {
     const [appraisal, setAppraisal] = useState(false);

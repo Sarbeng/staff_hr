@@ -1,10 +1,10 @@
 
 import { MdOutlineClose } from "react-icons/md";
-import TextInput from "../../components/TextInput";
+import TextInput from "../../../../components/components/TextInput";
 import * as Yup from "yup";
 import { useFormik } from "formik"
-import Button from "../../components/Button";
-import SelectInput from "../../components/SelectInput";
+import Button from "../../../../components/Button";
+import SelectInput from "../../../../components/SelectInput";
 
 
 

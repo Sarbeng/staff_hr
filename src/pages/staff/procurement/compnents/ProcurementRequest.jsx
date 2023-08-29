@@ -2,7 +2,7 @@
 import { MdOutlineChevronLeft, MdOutlineChevronRight, MdOutlineInfo } from "react-icons/md";
 import * as Yup from "yup";
 import { useFormik } from "formik"
-import Button from "../../components/Button";
+import Button from "../../../../components/Button";
 import { useNavigate } from "react-router-dom";
 
 
