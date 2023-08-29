@@ -1,4 +1,4 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import {  useState } from "react";
 import {  MdOutlineHail,  MdOutlineLogout, MdOutlinePeopleOutline,  MdOutlineTrackChanges,  } from "react-icons/md"
 import { useSignOut, useAuthUser } from "react-auth-kit";
@@ -13,8 +13,8 @@ import TNDNav from "./sidebarComponents/TNDNav";
 
 
 export default function Sidebar(props) {
-  const activeLink = 'rounded-r-full bg-primary-main text-white'
-  const normalLink = ''
+  // const activeLink = 'rounded-r-full bg-primary-main text-white'
+  // const normalLink = ''
   const [isExpanded] = useState(false);
 
   //this section is used to check for the role of the user, currently not using it so we'll see
