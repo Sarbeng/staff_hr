@@ -8,8 +8,23 @@ export default function TNDNav ({handleToggle}) {
         {
           linkName:"Cts & Tnd",
           linkIcon: <MdOutlineWorkOff/>,
-          linkTo:"/dashboard/tnd"
+          linkTo:"/tnd/home"
         },
+        {
+            linkName:"Add T&D data",
+            linkIcon: <MdOutlineWorkOff/>,
+            linkTo:"/dashboard/tnd"
+          },
+          {
+            linkName:"Training List",
+            linkIcon: <MdOutlineWorkOff/>,
+            linkTo:"/dashboard/tnd"
+          },
+          {
+            linkName:"T&D Applications",
+            linkIcon: <MdOutlineWorkOff/>,
+            linkTo:"/dashboard/tnd"
+          },
       ]
     return <>
         {

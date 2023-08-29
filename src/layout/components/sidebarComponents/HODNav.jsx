@@ -5,10 +5,20 @@ export default function HODNav ({handleToggle}) {
     const normalLink = '';
     const hodLinks = [
         {
-          linkName:"Cts & Tnd",
+          linkName:"Appraisal",
           linkIcon: <MdOutlineWorkOff/>,
           linkTo:"/dashboard/tnd"
         },
+        {
+            linkName:"Procurement",
+            linkIcon: <MdOutlineWorkOff/>,
+            linkTo:"/dashboard/tnd"
+          },
+          {
+            linkName:"Promotions",
+            linkIcon: <MdOutlineWorkOff/>,
+            linkTo:"/dashboard/tnd"
+          },
       ]
     return (
         <>
