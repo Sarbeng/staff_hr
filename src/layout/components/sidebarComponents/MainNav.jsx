@@ -1,14 +1,39 @@
 import { NavLink } from "react-router-dom";
-import {MdOutlineWorkOff} from "react-icons/md";
-export default function MainNav (handleToggle) {
+import {MdOutlineWorkOff,MdOutlineDashboard,MdOutlinePerson,MdOutlineBallot,MdOutlineShoppingBag,MdOutlineStackedLineChart,} from "react-icons/md";
+export default function MainNav ({handleToggle}) {
     const activeLink = 'rounded-r-full bg-primary-main text-white';
     const normalLink = '';
     const mainLinks = [
         {
-          linkName:"Cts & Tnd",
-          linkIcon: <MdOutlineWorkOff/>,
-          linkTo:"/dashboard/tnd"
-        },
+            linkName:"Dashboard",
+            linkIcon: <MdOutlineDashboard/>,
+            linkTo:"/dashboard/home"
+          },
+          {
+            linkName:"Personal Details",
+            linkIcon: <MdOutlinePerson/>,
+            linkTo:"/dashboard/personalDetails"
+          },
+          {
+            linkName:"Leave",
+            linkIcon: <MdOutlineWorkOff/>,
+            linkTo:"/dashboard/leave"
+          },
+          {
+            linkName:"Appraisal",
+            linkIcon: <MdOutlineBallot/>,
+            linkTo:"/dashboard/appraisal"
+          },
+          {
+            linkName:"Promotion",
+            linkIcon: <MdOutlineStackedLineChart/>,
+            linkTo:"/dashboard/promotion"
+          },
+          {
+            linkName:"Procurement",
+            linkIcon: <MdOutlineShoppingBag/>,
+            linkTo:"/dashboard/procurement"
+          },
       ]
     return(
         <>

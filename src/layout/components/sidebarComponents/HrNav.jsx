@@ -15,44 +15,44 @@ export default function HrNav ({handleToggle}) {
     const normalLink = '';
     const hrLinks = [
         {
-          linkName:"Dashboard",
+          linkName:"Hr",
           linkIcon: <MdOutlineDashboard/>,
-          linkTo:"/dashboard/home"
+          linkTo:"/hr/home"
         },
         {
           linkName:"Data Entry",
           linkIcon: <MdOutlineModeEdit/>,
-          linkTo:"/dashboard/data_entry"
+          linkTo:"/hr/data_entry"
         },
         {
           linkName:"Data Setup",
           linkIcon: <MdOutlineSettings/>,
-          linkTo:"/dashboard/data_setup"
+          linkTo:"/hr/data_setup"
         },
         {
           linkName:"Promotion List",
           linkIcon: <MdOutlineList/>,
-          linkTo:"/dashboard/promotion_list"
+          linkTo:"/hr/promotion_list"
         },
         {
           linkName:"Postion Assignment",
           linkIcon: <MdOutlineChangeHistory/>,
-          linkTo:"/dashboard/postion_assignment"
+          linkTo:"/hr/postion_assignment"
         },
         {
           linkName:"Contract Renewal",
           linkIcon: <MdOutlineAddChart/>,
-          linkTo:"/dashboard/contract_renewal"
+          linkTo:"/hr/contract_renewal"
         },
         {
           linkName:"Staff Appraisal",
           linkIcon: <MdOutlineAppRegistration/>,
-          linkTo:"/dashboard/staff_appraisal"
+          linkTo:"/hr/staff_appraisal"
         },
         {
           linkName:"Establishment",
           linkIcon: <MdOutlineHomeWork/>,
-          linkTo:"/dashboard/establishment"
+          linkTo:"/hr/establishment"
         },
         
       ]

@@ -3,6 +3,9 @@ import { useEffect, useState} from "react";
 import {MdOutlineLogout,} from "react-icons/md"
 import {useSignOut,useAuthUser} from "react-auth-kit";
 import MainNav from "./sidebarComponents/MainNav";
+import HrNav from "./sidebarComponents/HRNav";
+import HODNav from "./sidebarComponents/HODNav";
+import TNDNav from "./sidebarComponents/TNDNav";
 
 
 
@@ -71,11 +74,14 @@ export default function Sidebar(props) {
     <aside className={`fixed shadow-md border  left-0 z-40 w-80 h-screen transition-transform  ${isExpanded == props.toggle == false ? "" : "-translate-x-full sm:translate-x-0 "  }`}>
       <div
         id="links"
-        className="flex flex-col h-full px-8 py-8 overflow-y-scroll bg-white gap-5 dark:bg-gray-800 dark:text-white text-base text-primary-main"
+        className="flex flex-col h-full px-8 py-8 overflow-y-scroll bg-white gap-5 dark:bg-gray-800 dark:text-white text-base text-primary-main pb-16"
       >
         
     
        <MainNav/>
+       <HrNav/>
+       <HODNav/>
+       <TNDNav/>
         <button
         onClick={logout}
           className={ " hover:rounded-r-full hover:bg-primary-main hover:text-white" }
