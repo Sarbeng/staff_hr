@@ -1,15 +1,15 @@
 
-import LeaveModal from "./LeaveModal";
+import LeaveModal from "./components/LeaveModal";
 import { useState } from "react";
-import LeaveStatistics from "./LeaveStatistics";
-import LeaveRecords from "./LeaveRecords";
-import ApplyButton from "../../components/ApplyButton";
+import LeaveStatistics from "./components/LeaveStatistics";
+import LeaveRecords from "./components/LeaveRecords";
+import ApplyButton from "../../../components/ApplicationCard";
 import { MdOutlineWorkHistory } from "react-icons/md";
 
 export default function LeavePage() {
   const [showModal, setShowModal] = useState(false);
 
-  const handleModal = (event: any) => {
+  const handleModal = (event) => {
     event.preventDefault();
     //event.currentTarget.disabled = true;
     setShowModal(!showModal);

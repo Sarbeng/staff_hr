@@ -24,9 +24,9 @@ export default function LeaveStatistics() {
 
   return (
     <div className="py-8 flex gap-4 md:gap-8 overflow-scroll w-full">
-      {statistics.map((statistics: any) => {
+      {statistics.map((statistics) => {
         return (
-          <div className="bg-white shadow-sm p-8 border border-primary-border rounded-lg w-56">
+          <div key={""} className="bg-white shadow-sm p-8 border border-primary-border rounded-lg w-56">
             <div className="flex flex-col place-items-center items-center gap-8">
               <h3 className="text-base h-14 text-center">{statistics.heading}</h3>
               <p className="text-3xl">{statistics.number}</p>

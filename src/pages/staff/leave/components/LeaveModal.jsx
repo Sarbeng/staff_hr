@@ -1,16 +1,13 @@
 
 import { MdOutlineClose } from "react-icons/md";
-import TextInput from "../../components/TextInput";
+import TextInput from "../../../../components/TextInput";
 import * as Yup from "yup";
 import {useFormik} from "formik"
-import Button from "../../components/Button";
+import Button from "../../../../components/Button";
 
-interface Props {
-  showModal?: boolean;
-  handleModal?: React.MouseEventHandler<HTMLButtonElement> | undefined;
-}
 
-export default function LeaveModal(props: Props) {
+
+export default function LeaveModal(props) {
 //   const [showModal, setShowModal] = useState(true);
 //   const handleModal = (event: any) => {
 //     event.preventDefault();

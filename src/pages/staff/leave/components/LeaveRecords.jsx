@@ -5,7 +5,7 @@ import { useState } from "react";
 export default function LeaveRecords () {
     const [showModal, setShowModal] = useState(false);
 
-    const handleModal = (event:any) => {
+    const handleModal = (event) => {
       event.preventDefault()
       event.currentTarget.disabled = true;
       setShowModal(!showModal)
@@ -42,7 +42,7 @@ export default function LeaveRecords () {
             <div className="py-4">
             {leaveRecords.map((leaveList)=>{
                 return (
-                    <div className="mb-4 overflow-scroll">
+                    <div key={""} className="mb-4 overflow-scroll">
                 <div className="flex gap-5 h-36 p-4 shadow-sm bg-white w-fit rounded-lg border items-center">
                   <div className="flex flex-col max-w-xs w-56 gap-4">
                     <h4 className="text-xs uppercase font-semibold">

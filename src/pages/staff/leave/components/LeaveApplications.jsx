@@ -5,7 +5,7 @@ import {useState} from "react"
 export default function LeaveApplications () {
     const [showModal, setShowModal] = useState(false);
 
-    const handleModal = (event: any) => {
+    const handleModal = (event) => {
       event.preventDefault();
       //event.currentTarget.disabled = true;
       setShowModal(!showModal);

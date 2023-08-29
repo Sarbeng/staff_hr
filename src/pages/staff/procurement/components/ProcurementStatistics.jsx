@@ -1,5 +1,5 @@
 import { MdOutlineAddShoppingCart } from "react-icons/md";
-import ApplyButton from "../../components/ApplyButton";
+import ApplyButton from "../../../../components/ApplicationCard";
 
 export default function ProcurementStatistics() {
   const statistics = [

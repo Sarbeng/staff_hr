@@ -81,7 +81,7 @@ import AppraisalFormBPage13 from "./pages/hod/appraisal/AppraisalFormBPage13.jsx
 
 //staff procurement pages
 import Procurement from './pages/staff/procurement/Procurement.jsx';
-import ProcurementRequest from './pages/staff/procurement/compnents/ProcurementRequest.jsx';
+import ProcurementRequest from './pages/staff/procurement/components/ProcurementRequest.jsx';
 
 const router = createBrowserRouter([
   {
