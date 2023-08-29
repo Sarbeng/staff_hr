@@ -33,7 +33,7 @@ export default function TNDNav ({handleToggle}) {
               <NavLink
           to={navLink.linkTo}
           key={navLink.linkTo}
-          className={({isActive}) => isActive ? activeLink: normalLink + "hover:rounded-r-full hover:bg-primary-main hover:text-white" }
+          className={({isActive}) => isActive ? activeLink: normalLink + "hover:rounded-r-full hover:bg-primary-main hover:text-white"}
           onClick={handleToggle}
           >
             <p className="flex items-center gap-3  py-3 px-4 ">         <span className="text-2xl">{navLink.linkIcon}</span>

@@ -29,11 +29,6 @@ export default function MainNav ({handleToggle}) {
             linkIcon: <MdOutlineStackedLineChart/>,
             linkTo:"/dashboard/promotion"
           },
-          {
-            linkName:"Procurement",
-            linkIcon: <MdOutlineShoppingBag/>,
-            linkTo:"/dashboard/procurement"
-          },
       ]
     return(
         <>

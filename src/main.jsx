@@ -80,8 +80,8 @@ import AppraisalFormBPage12 from "./pages/hod/appraisal/AppraisalFormBPage12.jsx
 import AppraisalFormBPage13 from "./pages/hod/appraisal/AppraisalFormBPage13.jsx"
 
 //staff procurement pages
-import Procurement from './pages/staff/procurement/Procurement.jsx';
-import ProcurementRequest from './pages/staff/procurement/components/ProcurementRequest.jsx';
+import Procurement from './pages/hod/procurement/Procurement.jsx';
+import ProcurementRequest from './pages/hod/procurement/components/ProcurementRequest.jsx';
 
 const router = createBrowserRouter([
   {
@@ -212,13 +212,22 @@ const router = createBrowserRouter([
       
 
      
-      {
-        path: "tnd",
-        element: <TnD />
-      }
+      
     ],
     
   },
+  //start of tnd pages
+  {
+    path: "tnd",
+    element: <LayoutPage/>,
+    children: [
+      {
+        path:"home",
+        element:<TnD/>
+      }
+    ]
+  },
+  //end of tnd pages
   // start of reguar staff protal pages
   {
     path:"/dashboard",
