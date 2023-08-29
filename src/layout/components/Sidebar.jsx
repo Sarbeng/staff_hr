@@ -3,7 +3,7 @@ import {  useState } from "react";
 import {  MdOutlineHail,  MdOutlineLogout, MdOutlinePeopleOutline,  MdOutlineTrackChanges,  } from "react-icons/md"
 import { useSignOut, useAuthUser } from "react-auth-kit";
 import MainNav from "./sidebarComponents/MainNav";
-import HrNav from "./sidebarComponents/HRNav";
+import HrNav from "./sidebarComponents/HrNav";
 import HODNav from "./sidebarComponents/HODNav";
 import TNDNav from "./sidebarComponents/TNDNav";
 
