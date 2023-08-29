@@ -1,6 +1,6 @@
-import Circular from "./Circular";
-import QuickLinks from "./QuickLinks";
-import LatestRequests from "./LatestRequests";
+import Circular from "./components/Circular";
+import QuickLinks from "./components/QuickLinks";
+import LatestRequests from "./components/LatestRequests";
 
 export default function HomePage() {
   return (

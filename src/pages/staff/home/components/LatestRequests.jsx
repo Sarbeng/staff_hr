@@ -1,11 +1,11 @@
 import { MdOutlineCheck, MdOutlineVisibility } from "react-icons/md";
 import { useState } from "react";
-import LeaveModal from "../Leave/LeaveModal";
+import LeaveModal from "../../leave/components/LeaveModal";
 
 export default function LatestRequests() {
   const [showModal, setShowModal] = useState(false);
 
-  const handleModal = (event:any) => {
+  const handleModal = (event) => {
     event.preventDefault()
     event.currentTarget.disabled = true;
     setShowModal(!showModal)

@@ -1,10 +1,10 @@
 
 
 
-import TextInput from "../../../components/TextInput";
+import TextInput from "../../../../components/TextInput";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import Button from "../../../components/Button";
+import Button from "../../../../components/Button";
 import { useNavigate } from "react-router-dom"
 import { MdOutlineChevronRight } from "react-icons/md";
 

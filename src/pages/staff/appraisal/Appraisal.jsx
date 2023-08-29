@@ -1,7 +1,7 @@
 
 import { MdOutlineBallot, } from "react-icons/md";
 import CurrentAppraisal from "./components/CurrentAppraisal";
-import PreviousAppraisals from "./components/components/PreviousAppraisal";
+import PreviousAppraisals from "./components/PreviousAppraisal";
 import NoAppraisal from "./components/NoAppraisal";
 import ApplyButton from "../../../components/ApplicationCard";
 import { useEffect, useState } from "react";

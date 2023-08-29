@@ -1,6 +1,6 @@
 
-import PromotionRecords from "./PromotionRecords";
-import PromotionStatistics from "./PromotionStatistics";
+import PromotionRecords from "./components/PromotionRecords";
+import PromotionStatistics from "./components/PromotionStatistics";
 
 export default function Procurement () {
     return (

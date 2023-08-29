@@ -1,7 +1,7 @@
 import { MdOutlineChevronRight } from "react-icons/md";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import LoadingSpinner from "../../components/LoadingSpinner";
+import LoadingSpinner from "../../../../components/LoadingSpinner";
 
 export default function Circular() {
  
@@ -58,7 +58,7 @@ const [errorMessage, setErrorMessage] = useState('');
               {isLoading ? <LoadingSpinner/> : errorMessage}
               {  isLoading == false && errorMessage == '' &&
                 <div>
-                {circulars.map((circular:any)=>{
+                {circulars.map((circular)=>{
                   return(
                     <a key={circular.id}
                 href={`https://staffportal.ucc.edu.gh${circular.attachment}`}
