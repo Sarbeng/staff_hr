@@ -15,7 +15,7 @@ import { } from "react";
 export default function PromotionDocUpload() {
     const navigate = useNavigate();
     const handleBack = () => {
-        navigate("/promotionPage4");
+        navigate("/dashboard/promotionPage4");
     };
 
     const formik = useFormik({
@@ -29,7 +29,7 @@ export default function PromotionDocUpload() {
         }),
         onSubmit: (values) => {
             alert(JSON.stringify(values, null, 2));
-            navigate("/promotionDocUpload");
+            navigate("/dashboard/promotionDocUpload");
         },
     });
     return (

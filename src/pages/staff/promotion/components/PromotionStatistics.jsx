@@ -29,7 +29,7 @@ export default function PromotionStatistics () {
           );
         })}
       </div>
-      <ApplyButton To="/dashboard/promotionPage1" icon={<MdOutlineBubbleChart/>} heading="Apply for Promotion"/>
+      <ApplyButton to="/dashboard/promotionPage1" icon={<MdOutlineBubbleChart/>} heading="Apply for Promotion"/>
     </div>
         </div>
     )

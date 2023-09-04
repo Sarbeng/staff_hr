@@ -9,7 +9,7 @@ import { MdOutlineChevronLeft, MdOutlineChevronRight, MdOutlineInfo } from "reac
 export default function PromotionPage4() {
     const navigate = useNavigate();
     const handleBack = () => {
-        navigate('/promotionPage4')
+        navigate('/dashboard/promotionPage4')
     }
 
     const formik = useFormik({
@@ -38,7 +38,7 @@ export default function PromotionPage4() {
                         <div className="w-full md:w-fit  bg-primary-surface py-4  px-3 rounded-lg flex justify-center items-center gap-3">
 
                             <div className="flex gap-2 items-center">
-                                <p className="text-primary-main capitalize">Application for Procurement</p>
+                                <p className="text-primary-main capitalize">Application for Promotion</p>
                                 <hr className="inline-block h-full min-h-[1.5em] w-0.5  bg-neutral-300 opacity-100 dark:opacity-50" />
                                 <p className="bg-primary-main text-white  text-sm py-2 px-8 rounded-full">Page 5 of 6</p>
                             </div>
