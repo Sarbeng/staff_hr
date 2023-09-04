@@ -33,7 +33,7 @@ export default function LeavePage() {
           <LeaveStatistics />
         </section>
         <section>
-            <ApplyButton To="/leave" Icon={<MdOutlineWorkHistory/>} heading="Apply Leave" onClick={handleModal}/>
+            <ApplyButton To="/leave" icon={<MdOutlineWorkHistory/>} heading="Apply Leave" onClick={handleModal}/>
         </section>
         <section>
             <LeaveRecords/>
