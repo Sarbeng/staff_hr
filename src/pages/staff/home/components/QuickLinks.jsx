@@ -4,22 +4,17 @@ import { Link } from "react-router-dom";
 export default function QuickLinks (){
     const quickLinks = [
         {
-            linkTo:"apply_leave",
+            linkTo:"/dashboard/leave",
             linkName:"Apply Leave",
             icon: <MdOutlineWorkOff/>
         },
         {
-            linkTo:"request_procurement",
-            linkName:"Request Procurement",
-            icon: <MdOutlineList/>
-        },
-        {
-            linkTo:"apply_promotion",
+            linkTo:"/dashboard/promotionpage1",
             linkName:"Apply for Promotion",
             icon: <MdOutlineStackedLineChart/>
         },
         {
-            linkTo:"/apraisal_form",
+            linkTo:"/dashboard/appraisalpage1",
             linkName:"Fill Appraisal Form",
             icon: <MdOutlineLibraryBooks/>
         },
