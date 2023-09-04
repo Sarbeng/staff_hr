@@ -20,11 +20,7 @@ export default function Appraisal () {
             <div className="flex flex-col gap-8 pb-8">
                 
                 {appraisal?  <>
-                {/* if appraisal exists display current  Previous Appraisals Section */}
-                    {/* Pending  Appraisals for Review Section */}
-                 {hod ?
-                <AppraisalsPendingReview/> : null
-                }
+               
                     <CurrentAppraisal/>
            
              
