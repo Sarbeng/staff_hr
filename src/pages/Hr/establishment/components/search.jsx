@@ -6,13 +6,13 @@ export default function EstablishmentSearch ({details,labelName }) {
     const [searchField, setSearchField] = useState("")
 
     const selectOptions = [
-        {id:1,text:"one"},
+        {id:1,text:"ACCRA GUEST HOUSE --> NON-ACADEMIC"},
         {id:2,text:"two"},
         {id:3,text:"three"},
     ]
     const filteredPersons = details.filter((person) => {
         return (
-            person.establishmentName.toLowerCase().includes(searchField.toLowerCase()) || person.staff_number.toLowerCase().includes(searchField.toLowerCase())
+            person.department_name
         )
     })
 
@@ -32,7 +32,7 @@ export default function EstablishmentSearch ({details,labelName }) {
         <h2 className="text-xl">Search for name of person</h2>
       </div> */}
       <div id="inputGroup" className="mb-8">        
-        <SelectInput options={selectOptions} label={labelName} handleChange={handleChange}/>
+        <SelectInput  options={selectOptions} label={labelName} handleChange={handleChange}/>
       </div>
       {searchList()}
     </section>
