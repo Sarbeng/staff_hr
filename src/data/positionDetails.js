@@ -10,8 +10,8 @@ const positionDetails = [
     },
     {
         id:2,
-        name_of_head: "HUBERT DANQUAH NYARKO",
-        name_of_dept: "CASELY-HARFORD HALL",
+        name_of_head: "Herbert DANQUAH NYARKO",
+        name_of_dept: "ADEHYE HALL",
         position: 'HEAD',
         date_started: '2023-08-01',
         date_ended:"0000-00-00",

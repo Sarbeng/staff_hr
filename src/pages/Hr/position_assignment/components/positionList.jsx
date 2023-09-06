@@ -1,7 +1,7 @@
 
 import {MdOutlineVisibility,MdOutlineEdit,MdOutlineDelete} from "react-icons/md";
 //import positionDetails from "../../../../data/positionDetails";
-export default function PositionList (position) {
+export default function PositionList ({position}) {
     // so what i need to do here is to take the search values from the search input
     // check if those input values exist in the list and display them.
 

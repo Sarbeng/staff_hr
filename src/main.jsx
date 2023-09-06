@@ -40,7 +40,7 @@ import Position from './pages/Hr/data_setup/pages/position.jsx';
 import Roles from './pages/Hr/data_setup/pages/roles.jsx';
 
 import PromotionList from './pages/Hr/promotion_list/promotion_list.jsx';
-import PositionAssignment from './pages/Hr/positon_assignment/positon_assignment.jsx';
+import PositionAssignment from './pages/Hr/position_assignment/position_assignment.jsx';
 import ContractRenewalList from './pages/Hr/contract_renewal_list/contract_renewal_list.jsx';
 import StaffAppraisal from './pages/Hr/staff_appraisal/staff_appraisal.jsx';
 import Establishment from './pages/Hr/establishment/establishment.jsx';
