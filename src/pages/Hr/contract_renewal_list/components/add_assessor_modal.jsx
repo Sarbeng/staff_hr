@@ -61,19 +61,19 @@ export default function AddAssessorModal ({handleModal, showModal}) {
                   </div>
                   <div id="phone email" className="flex md:flex-row flex-col gap-4 w-full">
 
-                   <div className="w-1/2">
+                   <div className="w-full md:w-1/2">
                    <TextInput name={"phone_number"} label={"Phone number"} />
                    </div>
-                   <div className="w-1/2">
+                   <div className="w-full md:w-1/2">
                    <TextInput name={"email"} label={"Email"}/>
                    </div>
                   </div>
                   <div id="country city" className="flex md:flex-row flex-col gap-4 w-full">
 
-                    <div className="w-1/2">
+                    <div className="w-full md:w-1/2">
                     <TextInput name={"country"} label={"country"}/>
                     </div>
-                   <div className="w-1/2">
+                   <div className="w-full md:w-1/2">
                    <TextInput name={"city"} label={"city"}/>
                    </div>
                   </div>
