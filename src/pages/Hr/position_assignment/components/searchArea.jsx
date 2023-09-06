@@ -35,6 +35,9 @@ export default function SearchArea () {
         console.log(filterState)
         setPositionMap(filterState)
         console.log(positionMap)
+
+        // after writing this i realized i could just have posted to the database, stored the response in a state 
+        // and then printed out the value
     }
 
     const formik = useFormik({
