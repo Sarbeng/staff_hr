@@ -1,10 +1,11 @@
-import establishmentDetails from "../../../data/establishmentDetails";
-import EstablishmentSearch from "./components/search";
+
+import SearchArea from "./components/searchArea";
+
 
 export default function Establishment () {
     return (
-        <>
-            <EstablishmentSearch labelName={"Select Establishments"} details={establishmentDetails}/>
-        </>
+        <section className="flex flex-col gap-6">
+           <SearchArea/>
+        </section>
     );
 }
