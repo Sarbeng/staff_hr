@@ -82,6 +82,7 @@ import AppraisalFormBPage13 from "./pages/hod/appraisal/pages/AppraisalFormBPage
 //staff procurement pages
 import Procurement from './pages/hod/procurement/Procurement.jsx';
 import ProcurementRequest from './pages/hod/procurement/components/ProcurementRequest.jsx';
+import HodAppraisal from './pages/hod/appraisal/hod_appraisal';
 
 const router = createBrowserRouter([
   {
@@ -298,6 +299,10 @@ const router = createBrowserRouter([
         },
         //start of hod_appraisal pages
         {
+          path:"hod_appraisal",
+          element:<HodAppraisal/>
+        },
+        {
           path:'hod_appraisalPage1',
           element:<AppraisalFormBPage1 />
         },
@@ -359,6 +364,8 @@ const router = createBrowserRouter([
           path:'procurementRequest',
           element:<ProcurementRequest />
         },
+
+        //END OF HOD PROCUREMENT PAGES
     ]
   },
    // end of reguar staff protal pages

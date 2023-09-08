@@ -31,6 +31,7 @@ export default function ProcurementRequest() {
     }),
     onSubmit: (values) => {
       alert(JSON.stringify(values, null, 2))
+      navigate("/dashboard/procurement")
     }
 
   })

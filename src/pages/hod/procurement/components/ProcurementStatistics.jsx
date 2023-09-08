@@ -5,7 +5,7 @@ export default function ProcurementStatistics() {
   const statistics = [
     {
       id: 1,
-      heading: "Item Requests",
+      heading: "Item Requests for current year",
       number: 85,
     },
   ];
@@ -17,7 +17,7 @@ export default function ProcurementStatistics() {
           return (
             <div key={""} className="bg-white shadow-sm p-5 border border-primary-border rounded-lg w-56">
               <div className="flex flex-col place-items-center items-center gap-8">
-                <h3 className="text-base h-14 text-center">
+                <h3 className="text-base capitalize h-14 text-center">
                   {statistics.heading}
                 </h3>
                 <p className="text-3xl">{statistics.number}</p>
@@ -26,7 +26,7 @@ export default function ProcurementStatistics() {
           );
         })}
       </div>
-      <ApplyButton To="/dashboard/procurementRequest" Icon={<MdOutlineAddShoppingCart/>} heading="Procure Items"/>
+      <ApplyButton  to="/dashboard/procurementRequest" icon={<MdOutlineAddShoppingCart/>} heading="Procure Items"/>
     </div>
   );
 }

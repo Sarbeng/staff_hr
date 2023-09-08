@@ -7,17 +7,17 @@ export default function HODNav ({handleToggle}) {
         {
           linkName:"Appraisal",
           linkIcon: <MdOutlineWorkOff/>,
-          linkTo:"/dashboard/hod_appraisalPage1"
+          linkTo:"/dashboard/hod_appraisal"
         },
         {
             linkName:"Procurement",
             linkIcon: <MdOutlineWorkOff/>,
-            linkTo:"/dashboard/tnd"
+            linkTo:"/dashboard/procurement"
           },
           {
             linkName:"Promotions",
             linkIcon: <MdOutlineWorkOff/>,
-            linkTo:"/dashboard/tnd"
+            linkTo:"/dashboard/hod_promotion"
           },
       ]
     return (
