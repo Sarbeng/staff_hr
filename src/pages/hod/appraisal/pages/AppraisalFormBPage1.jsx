@@ -1,7 +1,7 @@
 
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import Button from "../../../components/Button";
+import Button from "../../../../components/Button";
 import { useNavigate } from "react-router-dom"
 import {  MdOutlineChevronRight } from "react-icons/md";
 
@@ -23,8 +23,8 @@ export default function AppraisalFormBPage1() {
         validationSchema: Yup.object({
             name: Yup.string().required("Name field cannot be empty"),
             staff_no: Yup.string().required("Staff number field cannot be empty"),
-            employees_designation: Yup.string().email().required(),
-            employees_dept: Yup.number().required(""),
+            employees_designation: Yup.string().required(),
+            employees_dept: Yup.string().required("Please enter your deparment"),
             supervisors_name: Yup.string().required("Supervisor's rank field cannot be empty"),
             supervisors_rank: Yup.string().required("Supervisors rank field cannot be empty"),
             year_under_review: Yup.string().required("Year Under Review field cannot be blank"),

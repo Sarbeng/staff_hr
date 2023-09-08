@@ -2,63 +2,65 @@
 
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import Button from "../../../components/Button";
-import { useNavigate } from "react-router-dom"
+import Button from "../../../../components/Button";
+import { useNavigate } from "react-router-dom";
 import { MdOutlineChevronRight } from "react-icons/md";
-import FormHeading from "../../../components/FormHeading";
+import FormHeading from "../../../../components/FormHeading";
 
-export default function AppraisalFormBPage11() {
-    const navigate = useNavigate()
+export default function AppraisalFormBPage9() {
+  const navigate = useNavigate();
 
-    const formik = useFormik({
-        initialValues: {
-            inspires_and_guides: "",
-            treats_with_respect: "",
-            creates_nice_climate:"",
-            positive_role_model:"",
-            operates_with_integrity:"",
-        },
-        validationSchema: Yup.object({
-            inspires_and_guides: Yup.string().required("This field cannot be empty"),
-            treats_with_respect: Yup.string().required("This field cannot be empty"),
-            creates_nice_climate: Yup.string().required(
-                "This field cannot be empty"
-            ),
-            positive_role_model: Yup.string().required("This field cannot be empty"),
-            operates_with_integrity: Yup.string().required("This field cannot be empty"),
-        }),
-        onSubmit: (values) => {
-            alert(JSON.stringify(values, null, 2));
-            navigate('/dashboard/hod_appraisalPage12')
-
-        }
-    })
-    return (
-        <>
-            <div className="flex flex-col gap-8 pb-8">
-                <section className="shadow bg-white px-4 py-4 md:p-8 ">
-                    <FormHeading
-                        formName="Appraisal Form B"
-                        pageNumber="Page 11 of 13"
-                        pageHeader="Leading Others"
-                    />
-                     <form onSubmit={formik.handleSubmit}>
+  const formik = useFormik({
+    initialValues: {
+      identifies_issues: "",
+      probes_understanding: "",
+      analyzes_information: "",
+      chooses_appropriate_action: "",
+      involves_others: "",
+    },
+    validationSchema: Yup.object({
+      identifies_issues: Yup.string().required("This field cannot be empty"),
+      probes_understanding: Yup.string().required("This field cannot be empty"),
+      demonstrates_professionalism: Yup.string().required(
+        "This field cannot be empty"
+      ),
+      chooses_appropriate_action: Yup.string().required(
+        "This field cannot be empty"
+      ),
+      involves_others: Yup.string().required("This field cannot be empty"),
+    }),
+    onSubmit: (values) => {
+      alert(JSON.stringify(values, null, 2));
+      navigate("/dashboard/hod_appraisalPage10");
+    },
+  });
+  return (
+    <>
+      <div className="flex flex-col gap-8 pb-8">
+        <section className="shadow bg-white px-4 py-4 md:p-8 ">
+          <FormHeading
+            formName="Appraisal Form B"
+            pageNumber="Page 9 of 13"
+            pageHeader="Decision Making"
+          />
+          <form onSubmit={formik.handleSubmit}>
             <section id="inputs" className="flex flex-col gap-4">
               <div id="inputGroup">
                 <label className="capitalize" htmlFor="email">
-                Inspires and guides individuals toward higher levels of performance
+                  Identifies issues, problems and opportunities and determines
+                  that action is needed
                 </label>
                 <select
                   className={` mt-2 mb-2 h-12 border text-sm border-primary-border rounded-lg w-full py-2 px-3 text-primary-main ${
-                    formik.touched.inspires_and_guides &&
-                    formik.errors.inspires_and_guides
+                    formik.touched.identifies_issues &&
+                    formik.errors.identifies_issues
                       ? "border-red-500 focus-within:outline-none  focus-within:border-red-500 focus-within:ring-1 shadow-sm focus-within:ring-red-500"
                       : "border-primary-border focus-within:outline-none  focus-within:border-primary-focused focus-within:ring-1 shadow-sm focus-within:ring-primary-focused"
                   }  bg-white`}
-                  name="inspires_and_guides"
+                  name="identifies_issues"
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  value={formik.values.inspires_and_guides}
+                  value={formik.values.identifies_issues}
                 >
                   <option selected disabled>
                     Select Rank
@@ -66,28 +68,29 @@ export default function AppraisalFormBPage11() {
                   <option>Administrator</option>
                   <option>Administrator 2</option>
                 </select>
-                {formik.touched.inspires_and_guides &&
-                formik.errors.inspires_and_guides ? (
+                {formik.touched.identifies_issues &&
+                formik.errors.identifies_issues ? (
                   <div className="text-red-600">
-                    {formik.errors.inspires_and_guides}
+                    {formik.errors.identifies_issues}
                   </div>
                 ) : null}
               </div>
               <div id="inputGroup">
                 <label className="capitalize" htmlFor="email">
-                Treats people with dignity, respect, and fairness
+                  Probes all relevant sources to better understand problem,
+                  issue or opportunity
                 </label>
                 <select
                   className={` mt-2 mb-2 h-12 border text-sm border-primary-border rounded-lg w-full py-2 px-3 text-primary-main ${
-                    formik.touched.treats_with_respect &&
-                    formik.errors.treats_with_respect
+                    formik.touched.probes_understanding &&
+                    formik.errors.probes_understanding
                       ? "border-red-500 focus-within:outline-none  focus-within:border-red-500 focus-within:ring-1 shadow-sm focus-within:ring-red-500"
                       : "border-primary-border focus-within:outline-none  focus-within:border-primary-focused focus-within:ring-1 shadow-sm focus-within:ring-primary-focused"
                   }  bg-white`}
-                  name="treats_with_respect"
+                  name="probes_understanding"
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  value={formik.values.treats_with_respect}
+                  value={formik.values.probes_understanding}
                 >
                   <option selected disabled>
                     Select Rank
@@ -95,28 +98,29 @@ export default function AppraisalFormBPage11() {
                   <option>Administrator</option>
                   <option>Administrator 2</option>
                 </select>
-                {formik.touched.treats_with_respect &&
-                formik.errors.treats_with_respect ? (
+                {formik.touched.probes_understanding &&
+                formik.errors.probes_understanding ? (
                   <div className="text-red-600">
-                    {formik.errors.treats_with_respect}
+                    {formik.errors.probes_understanding}
                   </div>
                 ) : null}
               </div>
               <div id="inputGroup">
                 <label className="capitalize" htmlFor="email">
-                Creates a climate in which people want to do their best
+                  Analyzes information and generates options for addressing
+                  issue, problem or opportunity
                 </label>
                 <select
                   className={` mt-2 mb-2 h-12 border text-sm border-primary-border rounded-lg w-full py-2 px-3 text-primary-main ${
-                    formik.touched.creates_nice_climate &&
-                    formik.errors.creates_nice_climate
+                    formik.touched.analyzes_information &&
+                    formik.errors.analyzes_information
                       ? "border-red-500 focus-within:outline-none  focus-within:border-red-500 focus-within:ring-1 shadow-sm focus-within:ring-red-500"
                       : "border-primary-border focus-within:outline-none  focus-within:border-primary-focused focus-within:ring-1 shadow-sm focus-within:ring-primary-focused"
                   }  bg-white`}
-                  name="creates_nice_climate"
+                  name="analyzes_information"
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  value={formik.values.creates_nice_climate}
+                  value={formik.values.analyzes_information}
                 >
                   <option selected disabled>
                     Select Rank
@@ -124,28 +128,29 @@ export default function AppraisalFormBPage11() {
                   <option>Administrator</option>
                   <option>Administrator 2</option>
                 </select>
-                {formik.touched.creates_nice_climate &&
-                formik.errors.creates_nice_climate ? (
+                {formik.touched.analyzes_information &&
+                formik.errors.analyzes_information ? (
                   <div className="text-red-600">
-                    {formik.errors.creates_nice_climate}
+                    {formik.errors.analyzes_information}
                   </div>
                 ) : null}
               </div>
               <div id="inputGroup">
                 <label className="capitalize" htmlFor="email">
-                Serves as a positive role model
+                  Chooses appropriate action by evaluating options and
+                  considering implications in a timely manner
                 </label>
                 <select
                   className={` mt-2 mb-2 h-12 border text-sm border-primary-border rounded-lg w-full py-2 px-3 text-primary-main ${
-                    formik.touched.positive_role_model &&
-                    formik.errors.positive_role_model
+                    formik.touched.chooses_appropriate_action &&
+                    formik.errors.chooses_appropriate_action
                       ? "border-red-500 focus-within:outline-none  focus-within:border-red-500 focus-within:ring-1 shadow-sm focus-within:ring-red-500"
                       : "border-primary-border focus-within:outline-none  focus-within:border-primary-focused focus-within:ring-1 shadow-sm focus-within:ring-primary-focused"
                   }  bg-white`}
                   name="demonstrates_professionalism"
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  value={formik.values.positive_role_model}
+                  value={formik.values.chooses_appropriate_action}
                 >
                   <option selected disabled>
                     Select Rank
@@ -153,28 +158,29 @@ export default function AppraisalFormBPage11() {
                   <option>Administrator</option>
                   <option>Administrator 2</option>
                 </select>
-                {formik.touched.positive_role_model &&
-                formik.errors.positive_role_model ? (
+                {formik.touched.chooses_appropriate_action &&
+                formik.errors.chooses_appropriate_action ? (
                   <div className="text-red-600">
-                    {formik.errors.positive_role_model}
+                    {formik.errors.chooses_appropriate_action}
                   </div>
                 ) : null}
               </div>
               <div id="inputGroup">
                 <label className="capitalize" htmlFor="email">
-                Operates with integrity, honesty, and courage
+                  Involves others as needed to ensure quality and commitment of
+                  decision
                 </label>
                 <select
                   className={` mt-2 mb-2 h-12 border text-sm border-primary-border rounded-lg w-full py-2 px-3 text-primary-main ${
-                    formik.touched.operates_with_integrity &&
-                    formik.errors.operates_with_integrity
+                    formik.touched.involves_others &&
+                    formik.errors.involves_others
                       ? "border-red-500 focus-within:outline-none  focus-within:border-red-500 focus-within:ring-1 shadow-sm focus-within:ring-red-500"
                       : "border-primary-border focus-within:outline-none  focus-within:border-primary-focused focus-within:ring-1 shadow-sm focus-within:ring-primary-focused"
                   }  bg-white`}
                   name="demonstrates_professionalism"
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  value={formik.values.operates_with_integrity}
+                  value={formik.values.involves_others}
                 >
                   <option selected disabled>
                     Select Rank
@@ -182,10 +188,10 @@ export default function AppraisalFormBPage11() {
                   <option>Administrator</option>
                   <option>Administrator 2</option>
                 </select>
-                {formik.touched.operates_with_integrity &&
-                formik.errors.operates_with_integrity ? (
+                {formik.touched.involves_others &&
+                formik.errors.involves_others ? (
                   <div className="text-red-600">
-                    {formik.errors.operates_with_integrity}
+                    {formik.errors.involves_others}
                   </div>
                 ) : null}
               </div>
@@ -204,8 +210,8 @@ export default function AppraisalFormBPage11() {
               </div>
             </section>
           </form>
-                </section>
-            </div>
-        </>
-    );
+        </section>
+      </div>
+    </>
+  );
 }

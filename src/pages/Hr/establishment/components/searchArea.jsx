@@ -104,7 +104,7 @@ export default function SearchArea () {
                 <h4 className="text-xs uppercase font-semibold">
                     EXpected No.
                 </h4>
-                <p className="text-sm bg-primary-surface p-1 w-16 h-16 justify-center items-center flex px-2 rounded-full text-primary-main text-2xl" ><span> </span>{establishment.expected_no}</p>
+               <input className="text-sm bg-primary-surface p-1 w-16 h-16 justify-center text-center items-center flex px-2 rounded-full text-primary-main"/>
             </div>
             <hr className="inline-block h-full min-h-[1em] w-0.5 self-stretch bg-neutral-100 opacity-100 dark:opacity-50" />
             <div className="flex flex-col w-fit max-w-xs h-full w-48 gap-4">

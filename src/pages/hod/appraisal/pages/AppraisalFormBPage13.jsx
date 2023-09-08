@@ -1,10 +1,10 @@
 
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import Button from "../../../components/Button";
+import Button from "../../../../components/Button";
 import { useNavigate } from "react-router-dom";
 import { MdOutlineChevronRight, MdOutlineInfo } from "react-icons/md";
-import FormHeading from "../../../components/FormHeading";
+import FormHeading from "../../../../components/FormHeading";
 
 export default function AppraisalFormBPage13() {
   const navigate = useNavigate();
