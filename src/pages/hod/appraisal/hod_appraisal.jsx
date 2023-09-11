@@ -1,6 +1,7 @@
 
 
 import AppraisalsPendingReview from "./components/AppraisalsPendingReview";
+import PreviousAppraisals from "./components/PreviousAppraisal";
 
 export default function HodAppraisal() {
     //const [appraisal, setAppraisal] = useState(false);
@@ -14,6 +15,7 @@ export default function HodAppraisal() {
 
 
                 <AppraisalsPendingReview />
+                <PreviousAppraisals/>
 
           
             </div >
