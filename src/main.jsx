@@ -83,6 +83,10 @@ import AppraisalFormBPage13 from "./pages/hod/appraisal/pages/AppraisalFormBPage
 import Procurement from './pages/hod/procurement/Procurement.jsx';
 import ProcurementRequest from './pages/hod/procurement/components/ProcurementRequest.jsx';
 import HodAppraisal from './pages/hod/appraisal/hod_appraisal';
+import HodPromotion from './pages/hod/promotion/hod_promotion';
+import AddTnD from './pages/cts_tnd/addTnD/addTnD';
+import TrainingList from './pages/cts_tnd/training_list/training_list';
+import TnDApplications from './pages/cts_tnd/tndApplications/tndApplications';
 
 const router = createBrowserRouter([
   {
@@ -225,6 +229,18 @@ const router = createBrowserRouter([
       {
         path:"home",
         element:<TnD/>
+      },
+      {
+        path:"addTnd",
+        element:<AddTnD/>
+      },
+      {
+        path:"trainingList",
+        element:<TrainingList/>
+      },
+      {
+        path:"tndApplications",
+        element:<TnDApplications/>
       }
     ]
   },
@@ -366,6 +382,12 @@ const router = createBrowserRouter([
         },
 
         //END OF HOD PROCUREMENT PAGES
+        // start of hod promotion
+        {
+          path:'hod_promotion',
+          element:<HodPromotion/>
+        }
+        //end of hod promotion
     ]
   },
    // end of reguar staff protal pages
