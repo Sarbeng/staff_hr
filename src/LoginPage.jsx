@@ -39,7 +39,7 @@ export default function LoginPage() {
       })
       .catch((error) => {
         if (error) {
-          console.log(error.data)
+          console.log(error.response.data.message)
         }
       })
 

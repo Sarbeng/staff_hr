@@ -1,37 +1,41 @@
 import { MdOutlineChevronRight } from "react-icons/md";
-import axios from "axios";
+import axios from "../../../../api/axios";
 import { useEffect, useState } from "react";
 import LoadingSpinner from "../../../../components/LoadingSpinner";
+import {useAuthUser} from "react-auth-kit"
 
 export default function Circular() {
- 
-  const [circulars,setCirculars] = useState([
-    {id:1,attachment:"http://127.0.0.1:8000/api/v1/circular", subject:"Christmas and new year holidays"},
-    {id:2,attachment:"http://127.0.0.1:8000/api/v1/circular", subject:"Christmas and new year holidays"},
-    {id:3,attachment:"http://127.0.0.1:8000/api/v1/circular", subject:"Christmas and new year holidays"},
-    {id:4,attachment:"http://127.0.0.1:8000/api/v1/circular", subject:"Christmas and new year holidays"},
-    {id:5,attachment:"http://127.0.0.1:8000/api/v1/circular", subject:"Christmas and new year holidays"}
-  ])
+
   const [isLoading,setIsLoading] = useState(false);
   // State to display error message
 const [errorMessage, setErrorMessage] = useState('');
- const getCircularData = async () => {
-  
-  setIsLoading(true)
-  
-  await axios
-  .get('http://127.0.0.1:8000/api/v1/circular')
-  .then(response => {
-    const circular = response.data.data;
-    setCirculars(circular);
-    setIsLoading(false) // hide loading screen
-  })
-  .catch(() => {
-    setErrorMessage("Unable to fetch Circular List")
-    setIsLoading(false)
-  });
- };
+const circular_url = "/circular";
+// state to display circular
+const [circulars, setCirculars] = useState([]);
+// get token from auth kit
+const auth = useAuthUser();
+const token = auth().token;
 
+const getCircularData = async () => {
+  const response = await axios.get(circular_url,{
+    headers : {
+      Authorization: `Bearer ${token}`,
+      "Accept":"application/json"
+    },
+
+  })
+  .catch((error) => {
+    if (error) {
+      console.log(error.response.data.message)
+      setErrorMessage(error.response.data.message)
+    }
+  })
+
+  if (response) {
+    console.log(response.data)
+    setCirculars(response.data)
+  }
+}
 
 
  useEffect(()=> {
