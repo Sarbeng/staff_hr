@@ -1,12 +1,12 @@
 import PropTypes from "prop-types"
-Button.propTypes = {
-    onClick: PropTypes.func,
-    disabled:PropTypes.bool,
-    type:PropTypes.string,
-    children:PropTypes.children,
-    buttonStyle:PropTypes.string
+// Button.propTypes = {
+//     onClick: PropTypes.func,
+//     disabled:PropTypes.bool,
+//     type:PropTypes.string,
+//     children:PropTypes.JSX,
+//     buttonStyle:PropTypes.string
 
-};
+// };
 export default function Button (props) {
     return <>
     <div className="">

@@ -91,12 +91,12 @@ import TnDApplications from './pages/cts_tnd/tndApplications/tndApplications';
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <LoginPage />,
+    element: <RequireAuth loginPath='/dashboard/home'><LoginPage /></RequireAuth>,
     errorElement: <ErrorPage />,
   },
   {
     path: "/hr",
-    element: <LayoutPage/>,
+    element: <RequireAuth loginPath='/'><LayoutPage/></RequireAuth>,
     children: [
       {
         path: "home",
@@ -224,7 +224,7 @@ const router = createBrowserRouter([
   //start of tnd pages
   {
     path: "tnd",
-    element: <LayoutPage/>,
+    element: <RequireAuth loginPath='/'><LayoutPage/></RequireAuth>,
     children: [
       {
         path:"home",
@@ -248,15 +248,15 @@ const router = createBrowserRouter([
   // start of reguar staff protal pages
   {
     path:"/dashboard",
-    element:<LayoutPage/>,
+    element:<RequireAuth loginPath={'/'}><LayoutPage/></RequireAuth>,
     children: [
       {
         path:'home',
-        element:<HomePage/>
+        element:<RequireAuth loginPath={'/'}><HomePage/></RequireAuth> 
       },
       {
         path:'personalDetails',
-        element:<PersonalDetails/>
+        element:<RequireAuth loginPath='/'><PersonalDetails/></RequireAuth>
       },
       {
         path:'leave',

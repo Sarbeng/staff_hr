@@ -6,6 +6,7 @@ import MainNav from "./sidebarComponents/MainNav";
 import HrNav from "./sidebarComponents/HrNav";
 import HODNav from "./sidebarComponents/HODNav";
 import TNDNav from "./sidebarComponents/TNDNav";
+import axios from "../../api/axios"
 
 
 
@@ -16,47 +17,7 @@ export default function Sidebar(props) {
   // const activeLink = 'rounded-r-full bg-primary-main text-white'
   // const normalLink = ''
   const [isExpanded] = useState(false);
-
-  //this section is used to check for the role of the user, currently not using it so we'll see
-
-  //const [testRole, setTestRole] = useState("HR");
-  // const auth = useAuthUser();
-  // useEffect(()=>{
-  //    let role = auth().role;
-  //    if (role == "08"){
-  //     setTestRole("HR")
-  //     console.log(testRole,role)
-  //    }
-  //    else if (role == "07"){
-  //     setTestRole("HR")
-  //     console.log(testRole,role)
-  //    }
-  //    else if (role == "06"){
-  //     setTestRole("HR")
-  //     console.log(testRole,role)
-  //    }
-  //    else if (role == "05"){
-  //     setTestRole("HR")
-  //     console.log(testRole,role)
-  //    }
-  //    else if (role == "04"){
-  //     setTestRole("HR")
-  //     console.log(testRole,role)
-  //    }
-  //    else if (role == "03"){
-  //     setTestRole("tnD")
-  //     console.log(testRole,role)
-  //    }
-  //    else if (role == "02"){
-  //     setTestRole("tnD")
-  //     console.log(testRole,role)
-  //    }
-  //    else if (role == "01"){
-  //     setTestRole("tnD")
-  //     console.log(testRole,role)
-  //    }
-  // },[])
-
+const logout_url = "/logout";
 
 
 const [showTnD,setShowTnD] = useState(false);
@@ -89,10 +50,31 @@ const closeAllSidebars = () => {
 
 
   const signOut = useSignOut();
+  const auth = useAuthUser();
+  const token = auth().token;
+  //console.log(token)
   const navigate = useNavigate()
-  const logout = () => {
-    signOut()
-    navigate('/')
+  const logout = async () => {
+    const response = await axios.post(logout_url,{
+      headers: {
+        //Authorization: `Bearer ${token}`,
+        "Accept":"application/json"
+      },
+    })
+    .catch((error)=>{
+      if (error) {
+        console.log(error.response.data.message)
+      }
+    });
+    
+    if (response) {
+      console.log(response)
+      signOut()
+      navigate('/')
+    }
+   
+
+   
   }
 
 

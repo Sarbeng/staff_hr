@@ -7,49 +7,57 @@ import { PasswordInput } from "./components/PasswordInput";
 import Button from "./components/Button";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import axios from "axios"
+import axios from "./api/axios"
 import { MdOutlineErrorOutline } from "react-icons/md";
-import { useSignIn } from "react-auth-kit";
+import { useSignIn,  } from "react-auth-kit";
 //import AuthContext from "../../context/UserContext"
 
 export default function LoginPage() {
   //const {setAuth } = useContext(AuthContext);
   // const [success, setSuccess] = useState(null);
+  const login_url = "/login" 
   const signIn = useSignIn()
   const [error, setError] = useState(null)
 
   const navigate = useNavigate();
 
-  const onSubmit = (values) => {
-    console.log(values);
-    alert(JSON.stringify(values,null,2))
-    navigate('/dashboard/home')
-  }
-
-  // const onSubmit = async (values) => {
-  //   setError(null)
-  //   //connecting to the logiin api
-  //   const response = await axios.post('http://127.0.0.1:8000/api/auth/login', values).catch((err) => {
-  //     if (err) {
-  //       setError(err.response.data.error)
-  //       console.log(err.response.data.error)
-  //     }
-  //   })
-  //   if (response) {
-  //     // alert("Welcome Back in. Authenticating...")
-
-
-
-  //     signIn({
-  //       token: response.data.access_token,
-  //       expiresIn: response.data.expires_in,
-  //       tokenType: response.data.token_type,
-  //       authState: { username: response.data.user.username, roles:response.data.user.roles, role:response.data.user.role }
-  //     })
-
-  //     navigate("/dashboard/home")
-  //   }
+  // const onSubmit = (values) => {
+  //   console.log(values);
+  //   alert(JSON.stringify(values,null,2))
+  //   navigate('/dashboard/home')
   // }
+
+
+  const FormSubmit = async (values) => {
+    // trying to just alert to console to check if it iworks
+    console.log(values)
+    const response = await axios.post(login_url,
+      values,
+      {
+        headers: { 'Content-Type': 'application/json',  },
+        //withCredentials: true
+      })
+      .catch((error) => {
+        if (error) {
+          console.log(error.data)
+        }
+      })
+
+    if (response) {
+      console.log(response.data)
+        
+      signIn({
+      token:response.data.token,
+      expiresIn:response.data.expires_in,
+      tokenType: response.data.token_type,
+      authState:{staff_no:response.data.user.staff_no, token: response.data.token}
+    })
+      navigate("/dashboard/home")
+    }
+
+    
+
+  }
 
   const formik = useFormik({
     initialValues: {
@@ -61,7 +69,7 @@ export default function LoginPage() {
       password: Yup.string().required("Password field cannot be empty"),
     }),
     validateOnBlur: true,
-    onSubmit,
+    onSubmit: FormSubmit,
   });
 
 
