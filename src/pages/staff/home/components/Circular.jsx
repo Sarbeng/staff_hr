@@ -2,7 +2,7 @@ import { MdOutlineChevronRight } from "react-icons/md";
 import axios from "../../../../api/axios";
 import { useEffect, useState } from "react";
 import LoadingSpinner from "../../../../components/LoadingSpinner";
-import {useAuthUser} from "react-auth-kit"
+import {useAuthUser} from "react-auth-kit";
 
 export default function Circular() {
 

@@ -1,15 +1,48 @@
 import { MdOutlineCheck, MdOutlineVisibility } from "react-icons/md";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import LeaveModal from "../../leave/components/LeaveModal";
+import axios from "../../../../api/axios";
+import {useAuthUser} from "react-auth-kit";
 
 export default function LatestRequests() {
   const [showModal, setShowModal] = useState(false);
+  const [leaveRequests,SetLeaveRequests] = useState([]);
+  // assigning our data to a viarable
+  const auth = useAuthUser();
+  // setting our leave url
+  const leave_url = "/leave";
+  //getting our auth token
+  const token = auth().token;
 
   const handleModal = (event) => {
     event.preventDefault()
     event.currentTarget.disabled = true;
     setShowModal(!showModal)
 }
+
+const getLatestLeave = async () => {
+  const response = await axios.get(leave_url,{
+    headers:{
+      Authorization:`Bearer ${token}`,
+      "Accept":"application/json"
+    }
+    
+  })
+  .catch((error) => {
+    if (error) {
+      console.log(error.response.data.message)
+    }
+  })
+
+  if (response) {
+    console.log(response.data)
+  }
+}
+
+useEffect(() => {
+  getLatestLeave()
+},[])
+
 
   const latestRequests = [
     {
