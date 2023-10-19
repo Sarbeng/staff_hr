@@ -50,7 +50,7 @@ export default function LoginPage() {
       token:response.data.token,
       expiresIn:response.data.expires_in,
       tokenType: response.data.token_type,
-      authState:{staff_no:response.data.user.staff_no, token: response.data.token}
+      authState:{staff_no:response.data.user.staff_no,user_data:response.data.user_data, token: response.data.token}
     })
       navigate("/dashboard/home")
     }

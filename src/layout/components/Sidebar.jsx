@@ -50,14 +50,16 @@ const closeAllSidebars = () => {
 
 
   const signOut = useSignOut();
+  // getting the token from the auth kit
   const auth = useAuthUser();
   const token = auth().token;
   //console.log(token)
   const navigate = useNavigate()
   const logout = async () => {
-    const response = await axios.post(logout_url,{
+    console.log(token);
+    const response = await axios.post(logout_url,{},{
       headers: {
-        //Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
         "Accept":"application/json"
       },
     })
@@ -68,7 +70,7 @@ const closeAllSidebars = () => {
     });
     
     if (response) {
-      console.log(response)
+      console.log(response.data)
       signOut()
       navigate('/')
     }

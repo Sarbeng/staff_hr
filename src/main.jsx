@@ -91,7 +91,7 @@ import TnDApplications from './pages/cts_tnd/tndApplications/tndApplications';
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <RequireAuth loginPath='/dashboard/home'><LoginPage /></RequireAuth>,
+    element: <LoginPage />,
     errorElement: <ErrorPage />,
   },
   {

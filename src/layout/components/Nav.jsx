@@ -26,11 +26,11 @@ const Nav = () => {
           >
             <div className="flex justify-center items-center gap-2">
               <img
-                src="https://images.pexels.com/photos/16904262/pexels-photo-16904262/free-photo-of-hot-air-balloons-in-sky.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load"
+                src={`https://ehub.ucc.edu.gh/api/photos/?tag=${auth().user_data.staff_no}`}
                 alt=""
                 className=" w-8 h-8 rounded-full object-cover"
               />
-              <h2>{auth()?.username}</h2>
+              <h2>{` ${auth()?.user_data.title} ${auth()?.user_data.fname} ${auth()?.user_data.mname} ${auth()?.user_data.lname} (${auth()?.user_data.staff_no})`}</h2>
               <MdOutlineArrowDropDown />
             </div>
           </button>
