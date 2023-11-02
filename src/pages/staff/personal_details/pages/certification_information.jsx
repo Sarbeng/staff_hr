@@ -1,5 +1,7 @@
-export default function FamilyInformation() {
-    <>
-        FamilyInformation
+export default function CertificationInformation() {
+    return (
+        <>
+        CertificationInformation
     </>
+    )
 }
