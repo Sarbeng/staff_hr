@@ -8,7 +8,13 @@ export default function CertificationInformation(props) {
 
                <DisabledInput label={'Institution'} value={props?.institution} />
                <DisabledInput label={'Qualification'} value={props?.qualify} />
+              
+
+            </div>
+            <div className="flex flex-col md:flex-row gap-4 w-full">
+
                <DisabledInput label={'Program'} value={props?.specialize} />
+               <DisabledInput label={'Certification Type'} value={props?.cert_rate} />
 
             </div>
             </section>

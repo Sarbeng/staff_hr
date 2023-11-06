@@ -42,9 +42,11 @@ export default function PersonalDetails () {
     const bioData = profileData?.bio_data[0];
     const relations = profileData?.relations;
     const certifications = profileData?.certificates;
-    console.log(certifications)
+    const transfers = profileData?.transfers;
+    console.log(transfers);
     //calling the staff_id
     const staff_no = auth().user_data.staff_no;
+
     //console.log(profileData.bio_data[0])
     return (
         
@@ -72,14 +74,20 @@ export default function PersonalDetails () {
                         // mapping through the users certifications
                         certifications?.map((certificates) => {
                             return (
-                                <CertificationInformation key={certificates.id} institution={certificates.institution} qualify={certificates.qualify} specialize={certificates.specialize}/>
+                                <CertificationInformation key={certificates.id} institution={certificates.institution} qualify={certificates.qualify} specialize={certificates.specialize} cert_rate={certificates.cert_rate ? certificates.cert_rate : "Not Provided"}/>
                             )
                         })
                     }
                     <ProfileHeader title={"University Information"}/>
-                    <UniversityInformation/>
+                    <UniversityInformation ssnit_no={bioData?.ssnit ? bioData?.ssnit : "Not Provided"} account_no={bioData?.account_no ? bioData?.account_no : "Not Provided"} bank_name={bioData?.bank_name? bioData?.bank_name : "Not Provided"} account_branch={bioData?.account_branch? bioData?.account_branch : "Not Provided" } current_designation={bioData?.jobtitle} appointment_date={bioData?.appoint_date} first_appointment_date={bioData?.first_appoint} first_confirmation_date={bioData?.first_confirm ? bioData?.first_confirm : "Not Set"} staff_no={staff_no}  ucc_mail={bioData?.ucc_mail} grade={bioData?.grade}/>
                     <ProfileHeader title={"Transfer Information"}/>
-                    <TransferInformation/>
+                    {
+                        transfers?.map(transfer => {
+                            return (
+                                <TransferInformation key={transfer.id}/>
+                            )
+                        })
+                    }
                 </section>
             </div>
         </>
