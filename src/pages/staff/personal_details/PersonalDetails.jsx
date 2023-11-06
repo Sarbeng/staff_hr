@@ -41,7 +41,8 @@ export default function PersonalDetails () {
 
     const bioData = profileData?.bio_data[0];
     const relations = profileData?.relations;
-    console.log(relations)
+    const certifications = profileData?.certificates;
+    console.log(certifications)
     //calling the staff_id
     const staff_no = auth().user_data.staff_no;
     //console.log(profileData.bio_data[0])
@@ -60,14 +61,21 @@ export default function PersonalDetails () {
                     <ProfileHeader title={"Family Information"}/>
                     {
                         // mapping through the relative data to display them one by one
-                        relations.map((relation) => {
+                        relations?.map((relation) => {
                             return (
                                 <FamilyInformation key={relation.id} name={relation.name} relation={relation.relation} hometown={relation.hometown ? relation.hometown : "Not Provided"} address={relation.address ? relation.address : "Not Provided"}/>
                             )
                         })
                     }
                     <ProfileHeader title={"Certificate Information"}/>
-                    <CertificationInformation/>
+                    {
+                        // mapping through the users certifications
+                        certifications?.map((certificates) => {
+                            return (
+                                <CertificationInformation key={certificates.id} institution={certificates.institution} qualify={certificates.qualify} specialize={certificates.specialize}/>
+                            )
+                        })
+                    }
                     <ProfileHeader title={"University Information"}/>
                     <UniversityInformation/>
                     <ProfileHeader title={"Transfer Information"}/>
