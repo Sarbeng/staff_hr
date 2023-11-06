@@ -7,6 +7,7 @@ export default function PersonalInformation(props) {
             <form  className="mb-8">
                 <section id="inputs" className="flex flex-col gap-4">
 
+               
                     <div className="flex flex-col md:flex-row gap-4 w-full">
 
                         <DisabledInput label={'First Name'} value={props?.fname} />
