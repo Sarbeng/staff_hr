@@ -84,7 +84,7 @@ export default function PersonalDetails () {
                     {
                         transfers?.map(transfer => {
                             return (
-                                <TransferInformation key={transfer.id}/>
+                                <TransferInformation key={transfer.id} date={transfer.transdate} fromunit={transfer.fromunit} tounit={transfer.tounit}/>
                             )
                         })
                     }
