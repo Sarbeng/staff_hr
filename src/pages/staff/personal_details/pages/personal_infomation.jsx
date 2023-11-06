@@ -1,7 +1,7 @@
 
 import DisabledInput from "../../../../components/DisabledInput";
 
-export default function PersonalInformation() {
+export default function PersonalInformation(props) {
     return (
         <>
             <form  className="mb-8">
@@ -9,32 +9,32 @@ export default function PersonalInformation() {
 
                     <div className="flex flex-col md:flex-row gap-4 w-full">
 
-                        <DisabledInput label={'First Name'} value={"hope"} />
-                        <DisabledInput label={'Middle Name(s)'} value={"hope"} />
-                        <DisabledInput label={'Last Name'} value={"hope"} />
+                        <DisabledInput label={'First Name'} value={props?.fname} />
+                        <DisabledInput label={'Middle Name(s)'} value={props?.mname} />
+                        <DisabledInput label={'Last Name'} value={props?.lname} />
 
                     </div>
 
                     <div className="flex flex-col md:flex-row gap-4 w-full">
 
-                        <DisabledInput label={'Age'} value={"hope"} />
-                        <DisabledInput label={'Date of Birth'} value={"hope"} />
-                        <DisabledInput label={'Place of Birth'} value={"hope"} />
+                        <DisabledInput label={'Age'} value={props.age} />
+                        <DisabledInput label={'Date of Birth'} value={props.dob} />
+                        <DisabledInput label={'Place of Birth'} value={props.birth_place} />
 
                     </div>
 
                     <div className="flex flex-col md:flex-row gap-4 w-full">
-                        <DisabledInput label={'Home town'} value={"hope"} />
-                        <DisabledInput label={'District'} value={"hope"} />
-                        <DisabledInput label={'Region'} value={"hope"} />
+                        <DisabledInput label={'Home town'} value={props.hometown} />
+                        <DisabledInput label={'District'} value={props.district} />
+                        <DisabledInput label={'Region'} value={props.region} />
                     </div>
                     <div className="flex flex-col md:flex-row gap-4 w-full">
-                        <DisabledInput label={'Nationality'} value={"hope"} />
-                        <DisabledInput label={'Home Address'} value={"hope"} />
+                        <DisabledInput label={'Nationality'} value={props.nationality} />
+                        <DisabledInput label={'Home Address'} value={props.address} />
                     </div>
                     <div className="flex flex-col md:flex-row gap-4 w-full">
-                        <DisabledInput label={'Phone Number'} value={"hope"} />
-                        <DisabledInput label={'Email'} value={"hope"} />
+                        <DisabledInput label={'Phone Number'} value={props.phone} />
+                        <DisabledInput label={'Email'} value={props.ucc_mail} />
                     </div>
 
                 </section>

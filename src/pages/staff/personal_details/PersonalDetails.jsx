@@ -4,14 +4,45 @@ import PersonalInformation from "./pages/personal_infomation";
 import TransferInformation from "./pages/transfer_information";
 import UniversityInformation from "./pages/university_information";
 
-import TextInput from "../../../components/TextInput";
-import Button from "../../../components/Button";
-import {MdOutlineChevronRight} from "react-icons/md";
+
 import ProfileHeader from "./components/profile_header";
 import ImageProfile from "./pages/image_profile";
+import axios from "../../../api/axios";
+import {useAuthUser} from "react-auth-kit";
+import { useEffect, useState } from "react";
 //import { Tab,Tabs } from "../../../components/Tabs";
 
 export default function PersonalDetails () {
+    const profileUrl = "/profile";
+    const auth = useAuthUser();
+    const token = auth().token;
+    const [profileData, setProfileData] = useState();
+
+
+    const getPersonalDetails = async () => {
+        const response = await axios.get(profileUrl,{
+            headers: {
+                Authorization: `Bearer ${token}`,
+                "Accept" : "application/json"
+            }
+        }).catch((error) => {
+            console.log(error.response.data)
+        })
+
+        if (response) {
+            console.log(response.data)
+            setProfileData(response.data)
+        }
+    }
+
+    useEffect(() => {
+        getPersonalDetails()
+    },[])
+
+    const bioData = profileData?.bio_data[0];
+    //calling the staff_id
+    const staff_no = auth().user_data.staff_no;
+    //console.log(profileData.bio_data[0])
     return (
         
         <>
@@ -20,9 +51,10 @@ export default function PersonalDetails () {
 
             <div className="flex flex-col gap-8 pb-8">
                 <section className="shadow bg-white px-4 md:p-8 ">
-                    <ImageProfile/>
+                    <ImageProfile staff_picture={staff_no} fname={bioData?.fname} mname={bioData?.mname} lname={bioData?.lname} staff_no={staff_no} staff_status={bioData?.staff_status} staff_group={bioData?.staff_group}/>
                     <ProfileHeader title={"Personal Details"}/>
-                    <PersonalInformation/>
+                    <PersonalInformation fname={bioData?.fname} mname={bioData?.mname ? bioData?.name : "N/A"} lname={bioData?.lname} age={bioData?.age} dob={bioData?.dob} birth_place={bioData?.birth_place} hometown={bioData?.hometown} district={bioData?.district} region={bioData?.region} nationality={bioData?.nationality? bioData?.nationality : "Not Set"} address={bioData?.address ? bioData?.address : "Not Set"} phone={bioData?.phone} ucc_mail={bioData?.ucc_mail}/>
+                    {/* {console.log(bioData)} */}
                     <ProfileHeader title={"Family Information"}/>
                     <FamilyInformation/>
                     <ProfileHeader title={"Certificate Information"}/>
