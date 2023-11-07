@@ -10,6 +10,7 @@ import ImageProfile from "./pages/image_profile";
 import axios from "../../../api/axios";
 import {useAuthUser} from "react-auth-kit";
 import { useEffect, useState } from "react";
+import DocsInformation from "./pages/docs_information";
 //import { Tab,Tabs } from "../../../components/Tabs";
 
 export default function PersonalDetails () {
@@ -88,6 +89,11 @@ export default function PersonalDetails () {
                             )
                         })
                     }
+                    {/* This is a section placed here just in case, it becomes neccessary */}
+                    {/* <section>
+                        <ProfileHeader title={"Documents"}/>
+                        <DocsInformation/>
+                    </section> */}
                 </section>
             </div>
         </>
