@@ -5,6 +5,8 @@ import * as Yup from "yup";
 import Button from "../../../../components/Button";
 import { useNavigate } from "react-router-dom"
 import { MdOutlineChevronLeft, MdOutlineChevronRight, MdOutlineInfo } from "react-icons/md";
+import axios from "../../../../api/axios";
+import { useAuthUser } from "react-auth-kit";
 
 
 export default function AppraisalPage2() {
@@ -13,23 +15,40 @@ export default function AppraisalPage2() {
         navigate('/dashboard/appraisalPage1')
     }
 
-    const formik = useFormik({
-        initialValues: {
-            significant_accomplishments: "",
-            barriers: "",
-            barriers_accomplished_goals: "",
-        },
-        validationSchema: Yup.object({
-            significant_accomplishments: Yup.string().required("Please add Your Most Significant Accomplishments This Past Year"),
-            barriers: Yup.string().required("Please this is a required field"),
-            barriers_accomplished_goals: Yup.string().required("Please add Particulars Of Conferences"),
+    const auth = useAuthUser();
+    const token= auth().token;
 
-        }),
-        onSubmit: (values) => {
-            alert(JSON.stringify(values, null, 2));
+    const onSubmit = async (values) => {
+        const postUrl = "/appraisal_update"
+       
+        const response = await axios.post(postUrl,values,{
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).catch((error) => {
+            console.log(error.response.data)
+        })
+
+        if (response) {
+            console.log(response.data)
             navigate('/dashboard/appraisalPage3')
 
         }
+    }
+
+    const formik = useFormik({
+        initialValues: {
+            accomplishments: "",
+            barriers_challenges: "",
+            barriers_challenges_goal: "",
+        },
+        validationSchema: Yup.object({
+            accomplishments: Yup.string().required("Please add Your Most Significant Accomplishments This Past Year"),
+            barriers_challenges: Yup.string().required("Please this is a required field"),
+            barriers_challenges_goal: Yup.string().required("Please add Particulars Of Conferences"),
+
+        }),
+        onSubmit:onSubmit
     })
     return (
         <>
@@ -53,16 +72,16 @@ export default function AppraisalPage2() {
                                 List your most significant accomplishments this past year
                                 </label>
                                 <textarea
-                                    className={`mt-2 mb-2 h-24 border text-sm border-primary-border rounded-lg w-full py-2 px-3 text-primary-main ${formik.touched.significant_accomplishments && formik.errors.significant_accomplishments ? "border-red-500 focus-within:outline-none  focus-within:border-red-500 focus-within:ring-1 shadow-sm focus-within:ring-red-500" : "border-primary-border focus-within:outline-none  focus-within:border-primary-focused focus-within:ring-1 shadow-sm focus-within:ring-primary-focused"}  bg-white`}
-                                    name="significant_accomplishments"
+                                    className={`mt-2 mb-2 h-24 border text-sm border-primary-border rounded-lg w-full py-2 px-3 text-primary-main ${formik.touched.accomplishments && formik.errors.accomplishments ? "border-red-500 focus-within:outline-none  focus-within:border-red-500 focus-within:ring-1 shadow-sm focus-within:ring-red-500" : "border-primary-border focus-within:outline-none  focus-within:border-primary-focused focus-within:ring-1 shadow-sm focus-within:ring-primary-focused"}  bg-white`}
+                                    name="accomplishments"
 
-                                    value={formik.values.significant_accomplishments}
+                                    value={formik.values.accomplishments}
                                     onBlur={formik.handleBlur}
                                     onChange={formik.handleChange}
 
                                 />
-                                  {formik.touched.significant_accomplishments && formik.errors.significant_accomplishments ? (
-                                    <div className="flex items-center gap-2 text-red-600"><MdOutlineInfo/> {formik.errors.significant_accomplishments}</div>
+                                  {formik.touched.accomplishments && formik.errors.accomplishments ? (
+                                    <div className="flex items-center gap-2 text-red-600"><MdOutlineInfo/> {formik.errors.accomplishments}</div>
                                 ) : null}
                             </div>
                             <div id="inputGroup">
@@ -70,16 +89,16 @@ export default function AppraisalPage2() {
                                 List any barriers or challenges that you have: *
                                 </label>
                                 <textarea
-                                    className={`mt-2 mb-2 h-24 border text-sm border-primary-border rounded-lg w-full py-2 px-3 text-primary-main ${formik.touched.barriers && formik.errors.barriers ? "border-red-500 focus-within:outline-none  focus-within:border-red-500 focus-within:ring-1 shadow-sm focus-within:ring-red-500" : "border-primary-border focus-within:outline-none  focus-within:border-primary-focused focus-within:ring-1 shadow-sm focus-within:ring-primary-focused"}  bg-white`}
-                                    name="barriers"
+                                    className={`mt-2 mb-2 h-24 border text-sm border-primary-border rounded-lg w-full py-2 px-3 text-primary-main ${formik.touched.barriers_challenges && formik.errors.barriers_challenges ? "border-red-500 focus-within:outline-none  focus-within:border-red-500 focus-within:ring-1 shadow-sm focus-within:ring-red-500" : "border-primary-border focus-within:outline-none  focus-within:border-primary-focused focus-within:ring-1 shadow-sm focus-within:ring-primary-focused"}  bg-white`}
+                                    name="barriers_challenges"
 
-                                    value={formik.values.barriers}
+                                    value={formik.values.barriers_challenges}
                                     onBlur={formik.handleBlur}
                                     onChange={formik.handleChange}
 
                                 />
-  {formik.touched.barriers && formik.errors.barriers ? (
-                                    <div className="flex items-center gap-2 text-red-600"><MdOutlineInfo/> {formik.errors.barriers}</div>
+  {formik.touched.barriers_challenges && formik.errors.barriers_challenges ? (
+                                    <div className="flex items-center gap-2 text-red-600"><MdOutlineInfo/> {formik.errors.barriers_challenges}</div>
                                 ) : null}
                             </div>
                             <div id="inputGroup">
@@ -87,16 +106,16 @@ export default function AppraisalPage2() {
                                 How has this barrier(s)/challenge(s) helped you to accomplish your goals:
                                 </label>
                                 <textarea
-                                    className={`mt-2 mb-2 h-24 border text-sm border-primary-border rounded-lg w-full py-2 px-3 text-primary-main ${formik.touched.barriers_accomplished_goals && formik.errors.barriers_accomplished_goals ? "border-red-500 focus-within:outline-none  focus-within:border-red-500 focus-within:ring-1 shadow-sm focus-within:ring-red-500" : "border-primary-border focus-within:outline-none  focus-within:border-primary-focused focus-within:ring-1 shadow-sm focus-within:ring-primary-focused"}  bg-white`}
-                                    name="barriers_accomplished_goals"
+                                    className={`mt-2 mb-2 h-24 border text-sm border-primary-border rounded-lg w-full py-2 px-3 text-primary-main ${formik.touched.barriers_challenges_goal && formik.errors.barriers_challenges_goal ? "border-red-500 focus-within:outline-none  focus-within:border-red-500 focus-within:ring-1 shadow-sm focus-within:ring-red-500" : "border-primary-border focus-within:outline-none  focus-within:border-primary-focused focus-within:ring-1 shadow-sm focus-within:ring-primary-focused"}  bg-white`}
+                                    name="barriers_challenges_goal"
 
-                                    value={formik.values.barriers_accomplished_goals}
+                                    value={formik.values.barriers_challenges_goal}
                                     onBlur={formik.handleBlur}
                                     onChange={formik.handleChange}
 
                                 />
-                                {formik.touched.barriers_accomplished_goals && formik.errors.barriers_accomplished_goals ? (
-                                    <div className="flex items-center gap-2 text-red-600"><MdOutlineInfo/> {formik.errors.barriers_accomplished_goals}</div>
+                                {formik.touched.barriers_challenges_goal && formik.errors.barriers_challenges_goal ? (
+                                    <div className="flex items-center gap-2 text-red-600"><MdOutlineInfo/> {formik.errors.barriers_challenges_goal}</div>
                                 ) : null}
                             </div>
 
@@ -108,7 +127,7 @@ export default function AppraisalPage2() {
                         <Button buttonStyle="bg-white border border-primary-border shadow text-primary-main w-full" onClick={handleBack}><MdOutlineChevronLeft/> Back</Button>
                         </div>
                         <div className="w-1/2">
-                        <Button buttonStyle="bg-primary-main text-white w-full">Save & Continue <MdOutlineChevronRight/></Button>
+                        <Button buttonStyle="bg-primary-main text-white w-full" type="submit">Save & Continue <MdOutlineChevronRight/></Button>
                            
                         </div>
                         

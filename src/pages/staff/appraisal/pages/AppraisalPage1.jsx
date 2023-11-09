@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom"
 import { MdOutlineChevronRight } from "react-icons/md";
 import { useAuthUser } from "react-auth-kit";
 import axios from "../../../../api/axios"
-import { useEffect, useState, object } from "react"
+import { useEffect, useState} from "react"
 
 
 export default function AppraisalPage1() {
@@ -50,9 +50,8 @@ export default function AppraisalPage1() {
     console.log(staff_data?.fullname)
     
     
-   //const mergedObj = {...staff_data, ...supervisor}
-
-    //console.log(mergedObj)
+   const mergedObj = {...staff_data, ...supervisor}
+    console.log(mergedObj)
       
 
 
@@ -235,7 +234,7 @@ export default function AppraisalPage1() {
                                         className={` mt-2 mb-2 h-12 border text-sm border-primary-border rounded-lg w-full py-2 px-3 text-primary-main  focus-within:outline-none  focus-within:border-primary-focused focus-within:ring-1 shadow-sm focus-within:ring-primary-focused"}  bg-white`}
                                         name="year_under_review"
                                         type="text"
-                                        value={staff_data?.year_under_review}
+                                        value={staff_data?.yr_onreview}
 
 
                                     />
