@@ -10,7 +10,7 @@ import { MdOutlineChevronLeft, MdOutlineChevronRight, MdOutlineInfo } from "reac
 export default function AppraisalPage2() {
     const navigate = useNavigate();
     const handleBack = () => {
-        navigate('/appraisalPage1')
+        navigate('/dashboard/appraisalPage1')
     }
 
     const formik = useFormik({

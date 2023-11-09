@@ -10,7 +10,7 @@ import ImageProfile from "./pages/image_profile";
 import axios from "../../../api/axios";
 import {useAuthUser} from "react-auth-kit";
 import { useEffect, useState } from "react";
-import DocsInformation from "./pages/docs_information";
+//import DocsInformation from "./pages/docs_information";
 //import { Tab,Tabs } from "../../../components/Tabs";
 
 export default function PersonalDetails () {
@@ -35,6 +35,7 @@ export default function PersonalDetails () {
             setProfileData(response.data)
         }
     }
+  
 
     useEffect(() => {
         getPersonalDetails()

@@ -10,7 +10,7 @@ import { MdOutlineChevronLeft, MdOutlineChevronRight, MdOutlineInfo } from "reac
 export default function AppraisalPage2() {
     const navigate = useNavigate();
     const handleBack = () => {
-        navigate('/appraisalPage2')
+        navigate('/dashboard/appraisalPage2')
     }
 
     const formik = useFormik({
@@ -46,6 +46,7 @@ export default function AppraisalPage2() {
 
                         </div>
                     </section>
+                    
                     <form onSubmit={formik.handleSubmit}>
                         <section id="inputs" className="flex flex-col gap-4">
                             <div id="inputGroup">

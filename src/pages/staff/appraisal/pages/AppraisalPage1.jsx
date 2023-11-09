@@ -1,46 +1,80 @@
 
-
-import { useFormik } from "formik";
-import * as Yup from "yup";
 import Button from "../../../../components/Button";
 import { useNavigate } from "react-router-dom"
-import {  MdOutlineChevronRight } from "react-icons/md";
+import { MdOutlineChevronRight } from "react-icons/md";
+import { useAuthUser } from "react-auth-kit";
+import axios from "../../../../api/axios"
+import { useEffect, useState, object } from "react"
 
 
 export default function AppraisalPage1() {
+    //link to api
+    const insertAppraisalUrl = "appraisal_show";
+    //retrieving token
+    const auth = useAuthUser();
+    const token = auth().token;
+
+    // storing state in variable
+    const [appraisalShow, setAppraisalShow] = useState();
+ 
+
+     
+
+
+    const getAppraisalUserData = async () => {
+        const response = await axios.get(insertAppraisalUrl, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+                "Accept": "application/json"
+            }
+        }).catch((error) => {
+            console.log(error.response.data)
+        })
+
+        if (response) {
+            console.log(response.data)
+            setAppraisalShow(response.data)
+        }
+    }
+
+    useEffect(() => {
+        getAppraisalUserData()
+    }, [])
     const navigate = useNavigate()
 
-    const formik = useFormik({
-        initialValues: {
-            name: "",
-            staff_no: "",
-            email: "",
-            phone: "",
-            apointment_date:"",
-            job_title:"",
-            supervisors_name:"",
-            supervisors_staff_no:"",
-            supervisors_rank: "",
-            year_under_review: ""
-        },
-        validationSchema: Yup.object({
-            name: Yup.string().required("Name field cannot be empty"),
-            staff_no: Yup.string().required("Staff number field cannot be empty"),
-            email: Yup.string().email().required(),
-            phone: Yup.number().required(""),
-            apointment_date: Yup.date().required("Date field cannot be empty"),
-            job_title: Yup.string().required("Job title field cannot be empty"),
-            supervisors_name: Yup.string().required("Supervisor's rank field cannot be empty"),
-            supervisors_staff_no: Yup.string().required("Supervisors staff number field cannot be empty"),
-            supervisors_rank: Yup.string().required("Supervisors rank field cannot be empty"),
-            year_under_review: Yup.string().required("Year Under Review field cannot be blank")
-        }),
-        onSubmit: (values) => {
-            alert(JSON.stringify(values, null, 2));
-            navigate('/dashboard/appraisalPage2')
 
+
+    //console.log(appraisalShow)
+    const staff_data = appraisalShow?.staff_data[0];
+    const supervisor = appraisalShow?.unit_head[0];
+    console.log(staff_data?.fullname)
+    
+    
+   //const mergedObj = {...staff_data, ...supervisor}
+
+    //console.log(mergedObj)
+      
+
+
+    const handleSubmit = async (event) => {
+        event.preventDefault()
+
+        const postUrl = "/appraisal_insert";
+
+        const response = await axios.post(postUrl,{...staff_data,...supervisor},{
+            headers: {
+                Authorization: `Bearer ${token}`,
+                "Accept": "application/json"
+            }
+        }).catch(error => {
+            console.log(error)
+        })
+
+        if (response) {
+            console.log(response.data)
+            navigate('/dashboard/appraisalPage2')
         }
-    })
+    }
     return (
         <>
             <div className="flex flex-col gap-8 pb-8">
@@ -56,45 +90,36 @@ export default function AppraisalPage1() {
 
                         </div>
                     </section>
-                    <form onSubmit={formik.handleSubmit}>
+                    <form onSubmit={handleSubmit}>
                         <section id="inputs" className="flex flex-col gap-4">
 
-                           
                             <div className="flex gap-4 w-full">
                                 <div id="inputGroup" className="flex flex-col w-1/2" >
                                     <label className="capitalize" htmlFor="email">
-                                    Name of Employee
+                                        Name of Employee
                                     </label>
                                     <input
-                                        className={` mt-2 mb-2 h-12 border text-sm border-primary-border rounded-lg w-full py-2 px-3 text-primary-main ${formik.touched.name && formik.errors.name ? "border-red-500 focus-within:outline-none  focus-within:border-red-500 focus-within:ring-1 shadow-sm focus-within:ring-red-500" : "border-primary-border focus-within:outline-none  focus-within:border-primary-focused focus-within:ring-1 shadow-sm focus-within:ring-primary-focused"}  bg-white`}
-                                        name="name"
+                                        className={` mt-2 mb-2 h-12 border text-sm border-primary-border rounded-lg w-full py-2 px-3 text-primary-main  focus-within:outline-none  focus-within:border-primary-focused focus-within:ring-1 shadow-sm focus-within:ring-primary-focused  bg-white`}
+                                        name="fullname"
                                         type="text"
-                                        value={formik.values.name}
-                                        onBlur={formik.handleBlur}
-                                        onChange={formik.handleChange}
+                                        value={staff_data?.fullname}
+                                        onChange={(event) =>setFullname(event.target.value) }
 
                                     />
-                                    {formik.touched.name && formik.errors.name ? (
-                                        <div className="text-red-600">{formik.errors.name}</div>
-                                    ) : null}
+
                                 </div>
                                 <div id="inputGroup" className="flex flex-col w-1/2" >
-                                    <label className="capitalize" htmlFor="email">
-                                    Staff No.
+                                    <label className="capitalize" htmlFor="staff_no">
+                                        Staff No.
                                     </label>
                                     <input
-                                        className={` mt-2 mb-2 h-12 border text-sm border-primary-border rounded-lg w-full py-2 px-3 text-primary-main ${formik.touched.staff_no && formik.errors.staff_no ? "border-red-500 focus-within:outline-none  focus-within:border-red-500 focus-within:ring-1 shadow-sm focus-within:ring-red-500" : "border-primary-border focus-within:outline-none  focus-within:border-primary-focused focus-within:ring-1 shadow-sm focus-within:ring-primary-focused"}  bg-white`}
+                                        className={` mt-2 mb-2 h-12 border text-sm border-primary-border rounded-lg w-full py-2 px-3 text-primary-main  focus-within:outline-none  focus-within:border-primary-focused focus-within:ring-1 shadow-sm focus-within:ring-primary-focused  bg-white`}
                                         name="staff_no"
                                         type="text"
-                                        value={formik.values.staff_no}
-                                        onBlur={formik.handleBlur}
-                                        onChange={formik.handleChange}
+                                        value={staff_data?.staff_no}
 
 
                                     />
-                                    {formik.touched.staff_no && formik.errors.staff_no ? (
-                                        <div className="text-red-600">{formik.errors.staff_no}</div>
-                                    ) : null}
                                 </div>
                             </div>
                             <div className="flex gap-4 w-full">
@@ -103,159 +128,131 @@ export default function AppraisalPage1() {
                                         Email
                                     </label>
                                     <input
-                                        className={` mt-2 mb-2 h-12 border text-sm border-primary-border rounded-lg w-full py-2 px-3 text-primary-main ${formik.touched.email && formik.errors.email ? "border-red-500 focus-within:outline-none  focus-within:border-red-500 focus-within:ring-1 shadow-sm focus-within:ring-red-500" : "border-primary-border focus-within:outline-none  focus-within:border-primary-focused focus-within:ring-1 shadow-sm focus-within:ring-primary-focused"}  bg-white`}
+                                        className={` mt-2 mb-2 h-12 border text-sm border-primary-border rounded-lg w-full py-2 px-3 text-primary-main  focus-within:outline-none  focus-within:border-primary-focused focus-within:ring-1 shadow-sm focus-within:ring-primary-focused"}  bg-white`}
                                         name="email"
                                         type="email"
-                                        value={formik.values.email}
-                                        onBlur={formik.handleBlur}
-                                        onChange={formik.handleChange}
+                                        placeholder="Not Set"
+                                        value={staff_data?.email}
+
 
                                     />
-                                    {formik.touched.email && formik.errors.email ? (
-                                        <div className="text-red-600">{formik.errors.email}</div>
-                                    ) : null}
                                 </div>
                                 <div id="inputGroup" className="flex flex-col w-1/2" >
                                     <label className="capitalize" htmlFor="email">
                                         Phone no.
                                     </label>
                                     <input
-                                        className={` mt-2 mb-2 h-12 border text-sm border-primary-border rounded-lg w-full py-2 px-3 text-primary-main ${formik.touched.phone && formik.errors.phone ? "border-red-500 focus-within:outline-none  focus-within:border-red-500 focus-within:ring-1 shadow-sm focus-within:ring-red-500" : "border-primary-border focus-within:outline-none  focus-within:border-primary-focused focus-within:ring-1 shadow-sm focus-within:ring-primary-focused"}  bg-white`}
+                                        className={` mt-2 mb-2 h-12 border text-sm border-primary-border rounded-lg w-full py-2 px-3 text-primary-main  focus-within:outline-none  focus-within:border-primary-focused focus-within:ring-1 shadow-sm focus-within:ring-primary-focused"}  bg-white`}
                                         name="phone"
                                         type="text"
-                                        value={formik.values.phone}
-                                        onBlur={formik.handleBlur}
-                                        onChange={formik.handleChange}
+                                        value={staff_data?.phone}
+
 
 
                                     />
-                                    {formik.touched.phone && formik.errors.phone ? (
-                                        <div className="text-red-600">{formik.errors.phone}</div>
-                                    ) : null}
+
                                 </div>
                             </div>
                             <div className="flex gap-4 w-full">
                                 <div id="inputGroup" className="flex flex-col w-1/2" >
                                     <label className="capitalize" htmlFor="email">
-                                        E-mail Address
+                                        Appointment Date
                                     </label>
                                     <input
-                                        className={` mt-2 mb-2 h-12 border text-sm border-primary-border rounded-lg w-full py-2 px-3 text-primary-main ${formik.touched.apointment_date && formik.errors.apointment_date ? "border-red-500 focus-within:outline-none  focus-within:border-red-500 focus-within:ring-1 shadow-sm focus-within:ring-red-500" : "border-primary-border focus-within:outline-none  focus-within:border-primary-focused focus-within:ring-1 shadow-sm focus-within:ring-primary-focused"}  bg-white`}
+                                        className={` mt-2 mb-2 h-12 border text-sm border-primary-border rounded-lg w-full py-2 px-3 text-primary-main  focus-within:outline-none  focus-within:border-primary-focused focus-within:ring-1 shadow-sm focus-within:ring-primary-focused"}  bg-white`}
                                         name="apointment_date"
                                         type="date"
-                                        value={formik.values.apointment_date}
-                                        onBlur={formik.handleBlur}
-                                        onChange={formik.handleChange}
+                                        value={staff_data?.appoint_date}
+
 
                                     />
-                                    {formik.touched.apointment_date && formik.errors.apointment_date ? (
-                                        <div className="text-red-600">{formik.errors.apointment_date}</div>
-                                    ) : null}
+
                                 </div>
                                 <div id="inputGroup" className="flex flex-col w-1/2" >
                                     <label className="capitalize" htmlFor="email">
                                         Job Title
                                     </label>
                                     <input
-                                        className={` mt-2 mb-2 h-12 border text-sm border-primary-border rounded-lg w-full py-2 px-3 text-primary-main ${formik.touched.job_title && formik.errors.job_title ? "border-red-500 focus-within:outline-none  focus-within:border-red-500 focus-within:ring-1 shadow-sm focus-within:ring-red-500" : "border-primary-border focus-within:outline-none  focus-within:border-primary-focused focus-within:ring-1 shadow-sm focus-within:ring-primary-focused"}  bg-white`}
-                                        name="job_title"
+                                        className={` mt-2 mb-2 h-12 border text-sm border-primary-border rounded-lg w-full py-2 px-3 text-primary-main  focus-within:outline-none  focus-within:border-primary-focused focus-within:ring-1 shadow-sm focus-within:ring-primary-focused"}  bg-white`}
+                                        name="title"
                                         type="text"
-                                        value={formik.values.job_title}
-                                        onBlur={formik.handleBlur}
-                                        onChange={formik.handleChange}
+                                        value={staff_data?.title}
+
 
 
                                     />
-                                    {formik.touched.job_title && formik.errors.job_title ? (
-                                        <div className="text-red-600">{formik.errors.job_title}</div>
-                                    ) : null}
+
                                 </div>
                             </div>
 
                             <div className="flex gap-4 w-full">
                                 <div id="inputGroup" className="flex flex-col w-1/2" >
                                     <label className="capitalize" htmlFor="email">
-                                    Supervisors name
+                                        Supervisors name
                                     </label>
                                     <input
-                                        className={` mt-2 mb-2 h-12 border text-sm border-primary-border rounded-lg w-full py-2 px-3 text-primary-main ${formik.touched.supervisors_name && formik.errors.supervisors_name ? "border-red-500 focus-within:outline-none  focus-within:border-red-500 focus-within:ring-1 shadow-sm focus-within:ring-red-500" : "border-primary-border focus-within:outline-none  focus-within:border-primary-focused focus-within:ring-1 shadow-sm focus-within:ring-primary-focused"}  bg-white`}
+                                        className={` mt-2 mb-2 h-12 border text-sm border-primary-border rounded-lg w-full py-2 px-3 text-primary-main focus-within:outline-none  focus-within:border-primary-focused focus-within:ring-1 shadow-sm focus-within:ring-primary-focused"}  bg-white`}
                                         name="supervisors_name"
                                         type="text"
-                                        value={formik.values.supervisors_name}
-                                        onBlur={formik.handleBlur}
-                                        onChange={formik.handleChange}
+                                        value={supervisor?.supervisor_name}
 
                                     />
-                                    {formik.touched.supervisors_name && formik.errors.supervisors_name ? (
-                                        <div className="text-red-600">{formik.errors.supervisors_name}</div>
-                                    ) : null}
+
                                 </div>
                                 <div id="inputGroup" className="flex flex-col w-1/2" >
                                     <label className="capitalize" htmlFor="email">
-                                        Supervisor's Staff no
+                                        Supervisors Staff no
                                     </label>
                                     <input
-                                        className={` mt-2 mb-2 h-12 border text-sm border-primary-border rounded-lg w-full py-2 px-3 text-primary-main ${formik.touched.supervisors_staff_no && formik.errors.supervisors_staff_no ? "border-red-500 focus-within:outline-none  focus-within:border-red-500 focus-within:ring-1 shadow-sm focus-within:ring-red-500" : "border-primary-border focus-within:outline-none  focus-within:border-primary-focused focus-within:ring-1 shadow-sm focus-within:ring-primary-focused"}  bg-white`}
+                                        className={` mt-2 mb-2 h-12 border text-sm border-primary-border rounded-lg w-full py-2 px-3 text-primary-main  focus-within:outline-none  focus-within:border-primary-focused focus-within:ring-1 shadow-sm focus-within:ring-primary-focused"}  bg-white`}
                                         name="supervisors_staff_no"
                                         type="text"
-                                        value={formik.values.supervisors_staff_no}
-                                        onBlur={formik.handleBlur}
-                                        onChange={formik.handleChange}
+                                        value={supervisor?.supervisor_staff_no}
 
                                     />
-                                    {formik.touched.supervisors_staff_no && formik.errors.supervisors_staff_no ? (
-                                        <div className="text-red-600">{formik.errors.supervisors_staff_no}</div>
-                                    ) : null}
+
                                 </div>
                             </div>
                             <div className="flex gap-4 w-full">
                                 <div id="inputGroup" className="flex flex-col w-1/2" >
                                     <label className="capitalize" htmlFor="email">
-                                    Supervisors Rank
+                                        Supervisors Rank
                                     </label>
                                     <input
-                                        className={` mt-2 mb-2 h-12 border text-sm border-primary-border rounded-lg w-full py-2 px-3 text-primary-main ${formik.touched.supervisors_rank && formik.errors.supervisors_rank ? "border-red-500 focus-within:outline-none  focus-within:border-red-500 focus-within:ring-1 shadow-sm focus-within:ring-red-500" : "border-primary-border focus-within:outline-none  focus-within:border-primary-focused focus-within:ring-1 shadow-sm focus-within:ring-primary-focused"}  bg-white`}
+                                        className={` mt-2 mb-2 h-12 border text-sm border-primary-border rounded-lg w-full py-2 px-3 text-primary-main focus-within:outline-none  focus-within:border-primary-focused focus-within:ring-1 shadow-sm focus-within:ring-primary-focused"}  bg-white`}
                                         name="supervisors_rank"
                                         type="text"
-                                        value={formik.values.supervisors_rank}
-                                        onBlur={formik.handleBlur}
-                                        onChange={formik.handleChange}
+                                        value={supervisor?.supervisors_rank}
 
                                     />
-                                    {formik.touched.supervisors_rank && formik.errors.supervisors_rank ? (
-                                        <div className="text-red-600">{formik.errors.supervisors_rank}</div>
-                                    ) : null}
+
                                 </div>
                                 <div id="inputGroup" className="flex flex-col w-1/2" >
                                     <label className="capitalize" htmlFor="email">
-                                    Year under Review
+                                        Year under Review
                                     </label>
                                     <input
-                                        className={` mt-2 mb-2 h-12 border text-sm border-primary-border rounded-lg w-full py-2 px-3 text-primary-main ${formik.touched.year_under_review && formik.errors.year_under_review ? "border-red-500 focus-within:outline-none  focus-within:border-red-500 focus-within:ring-1 shadow-sm focus-within:ring-red-500" : "border-primary-border focus-within:outline-none  focus-within:border-primary-focused focus-within:ring-1 shadow-sm focus-within:ring-primary-focused"}  bg-white`}
+                                        className={` mt-2 mb-2 h-12 border text-sm border-primary-border rounded-lg w-full py-2 px-3 text-primary-main  focus-within:outline-none  focus-within:border-primary-focused focus-within:ring-1 shadow-sm focus-within:ring-primary-focused"}  bg-white`}
                                         name="year_under_review"
                                         type="text"
-                                        value={formik.values.year_under_review}
-                                        onBlur={formik.handleBlur}
-                                        onChange={formik.handleChange}
+                                        value={staff_data?.year_under_review}
 
 
                                     />
-                                    {formik.touched.year_under_review && formik.errors.year_under_review ? (
-                                        <div className="text-red-600">{formik.errors.year_under_review}</div>
-                                    ) : null}
+
                                 </div>
                             </div>
 
                         </section>
                         <section id="buttonSection" className="flex w-full gap-4 items-end justify-end">
-                        <div className="w-1/2">
-                        {/* <Button buttonStyle="bg-white border border-primary-border shadow text-primary-main w-full" ><MdOutlineChevronLeft/> Back</Button> */}
-                        </div>
-                        <div className="w-1/2 ">
-                        <Button buttonStyle="bg-primary-main text-white w-full">Save & Continue <MdOutlineChevronRight/></Button>
-                           
-                        </div>
-                        
+                            <div className="w-1/2">
+                                {/* <Button buttonStyle="bg-white border border-primary-border shadow text-primary-main w-full" ><MdOutlineChevronLeft/> Back</Button> */}
+                            </div>
+                            <div className="w-1/2 ">
+                                <Button buttonStyle="bg-primary-main text-white w-full" type="submit">Save & Continue <MdOutlineChevronRight /></Button>
+
+                            </div>
+
                         </section>
                     </form>
                 </section>
