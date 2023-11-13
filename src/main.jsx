@@ -63,6 +63,7 @@ import Appraisal from "./pages/staff/appraisal/Appraisal.jsx"
 import AppraisalPage1 from "./pages/staff/appraisal/pages/AppraisalPage1.jsx"
 import AppraisalPage2 from "./pages/staff/appraisal/pages/AppraisalPage2.jsx"
 import AppraisalPage3 from "./pages/staff/appraisal/pages/AppraisalPage3.jsx"
+import AppraisalSign from './pages/staff/appraisal/pages/AppraisalSign.jsx';
 
 //hod appraisal pages
 import AppraisalFormBPage1 from "./pages/hod/appraisal/pages/AppraisalFormBPage1"
@@ -312,6 +313,10 @@ const router = createBrowserRouter([
         {
           path:'appraisalPage3',
           element:<AppraisalPage3 />
+        },
+        {
+          path:'appraisalSign',
+          element:<AppraisalSign />
         },
         //start of hod_appraisal pages
         {

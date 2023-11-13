@@ -60,7 +60,7 @@ export default function AppraisalPage2() {
                             <div className="flex gap-2 items-center">
                                 <p className="text-primary-main capitalize">Appraisal Form A</p>
                                 <hr className="inline-block h-full min-h-[1.5em] w-0.5  bg-neutral-300 opacity-100 dark:opacity-50" />
-                                <p className="bg-primary-main text-white  text-sm py-2 px-8 rounded-full">Page 2 of 3</p>
+                                <p className="bg-primary-main text-white  text-sm py-2 px-8 rounded-full">Page 2 of 4</p>
                             </div>
 
                         </div>
