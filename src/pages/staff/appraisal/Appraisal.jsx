@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import AppraisalsPendingReview from "./components/AppraisalsPendingReview";
 import axios from "../../../api/axios";
 import { useAuthUser } from "react-auth-kit";
+import ViewAppraisal from "./components/ViewAppraisal";
 
 export default function Appraisal() {
     const [appraisal, setAppraisal] = useState(false);
@@ -40,10 +41,9 @@ export default function Appraisal() {
     return (
         <>
             <div className="flex flex-col gap-8 pb-8">
-
                 {appraisal.appraisal != null ? <>
 
-                    <CurrentAppraisal />
+                    <CurrentAppraisal  status={appraisal.appraisal.app_status == 1 ? "Form Completed" : "Form Not Completed"} date={appraisal.appraisal.created_date} completion_date={appraisal.appraisal.updated_date} percentage_completion={appraisal.appraisal_count}/>
 
                     {/* <PreviousAppraisals /> */}
                 </>
