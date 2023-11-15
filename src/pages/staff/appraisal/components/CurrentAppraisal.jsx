@@ -1,10 +1,26 @@
 
 import {  MdOutlineDelete, MdOutlineEdit, MdOutlineVisibility } from "react-icons/md";
 import ViewAppraisal from "./ViewAppraisal";
+import { useState } from "react";
+import EditAppraisal from "./EditAppraisal";
 
 export default function CurrentAppraisal (props) {
+  const [isOpen, setIsOpen] = useState(false);
+  const [isEditOpen,setIsEditOpen] = useState(false);
+
+  const handleCloseModal = () => {
+    setIsOpen(!isOpen)
+  }
+
+  const handleCloseEditModal = () => {
+    setIsEditOpen(!isEditOpen)
+  }
+
     return (
+      
         <section>
+        <ViewAppraisal  isOpen={isOpen} setIsOpen={handleCloseModal}/>
+        <EditAppraisal isEditOpen={isEditOpen} setIsEditOpen={handleCloseEditModal}/>
         <h3 className="text-lg">Your Current Appraisals</h3>
 
 
@@ -38,7 +54,7 @@ export default function CurrentAppraisal (props) {
               </div>
               <hr className="inline-block h-full min-h-[1em] w-0.5 self-stretch bg-neutral-100 opacity-100 dark:opacity-50" />
               <div className="flex gap-4 px-8">
-                <button onClick={props.view}
+                <button onClick={handleCloseModal}
                   // href={leaveList.viewIcon.link}
                   className="flex flex-col  max-w-xs w-full gap-3  items-center justify-center"
                   
@@ -50,7 +66,7 @@ export default function CurrentAppraisal (props) {
                 </button>
                 
                  <div className="flex gap-3">
-                    <button onClick={props?.edit}
+                    <button onClick={handleCloseEditModal}
                  
                  className="flex flex-col  max-w-xs w-full gap-3  items-center justify-center" 
                  
