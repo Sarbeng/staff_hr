@@ -38,12 +38,35 @@ export default function Appraisal() {
     useEffect(() => {
         getAppraisalCheck()
     }, [])
+
+    // delete appraisal
+    const handleDelete = async () => {
+        const id = appraisal.appraisal.app_self_id;
+        const isConfirmed = window.confirm('Are you sure you want to delete this?');
+    
+        if (isConfirmed) {
+          const deleteUrl = `/appraisal/${id}`;
+        const response = await axios.delete(deleteUrl,{
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Accept":"application/json"
+          }
+        }).catch((error) => {
+          console.log(error.response.data)
+        })
+    
+        if (response) {
+          console.log(response.data)
+          setAppraisal(false)
+        }
+        }
+      }
     return (
         <>
             <div className="flex flex-col gap-8 pb-8">
                 {appraisal.appraisal != null ? <>
 
-                    <CurrentAppraisal  status={appraisal.appraisal.app_status == 1 ? "Form Completed" : "Form Not Completed"} date={appraisal.appraisal.created_date} completion_date={appraisal.appraisal.updated_date} percentage_completion={appraisal.appraisal_count}/>
+                    <CurrentAppraisal handleDelete={handleDelete} status={appraisal.appraisal.app_status == 1 ? "Form Completed" : "Form Not Completed"} date={appraisal.appraisal.created_date} completion_date={appraisal.appraisal.updated_date} percentage_completion={appraisal.appraisal_count}/>
 
                     {/* <PreviousAppraisals /> */}
                 </>

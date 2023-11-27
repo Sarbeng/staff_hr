@@ -3,10 +3,15 @@ import {  MdOutlineDelete, MdOutlineEdit, MdOutlineVisibility } from "react-icon
 import ViewAppraisal from "./ViewAppraisal";
 import { useState } from "react";
 import EditAppraisal from "./EditAppraisal";
+import axios from "../../../../api/axios";
+import { useAuthUser } from "react-auth-kit";
 
 export default function CurrentAppraisal (props) {
   const [isOpen, setIsOpen] = useState(false);
   const [isEditOpen,setIsEditOpen] = useState(false);
+  // getting the token
+  const auth = useAuthUser();
+  const token = auth().token;
 
   const handleCloseModal = () => {
     setIsOpen(!isOpen)
@@ -15,6 +20,8 @@ export default function CurrentAppraisal (props) {
   const handleCloseEditModal = () => {
     setIsEditOpen(!isEditOpen)
   }
+
+  
 
     return (
       
@@ -76,7 +83,7 @@ export default function CurrentAppraisal (props) {
                  </span>
                  <p className="truncate ... text-xs">Edit</p>
                </button>
-               <button onClick={props?.delete}
+               <button onClick={props?.handleDelete}
                 
                  className="flex flex-col  max-w-xs w-full gap-3  items-center justify-center" 
                  
