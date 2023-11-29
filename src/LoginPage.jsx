@@ -34,12 +34,13 @@ export default function LoginPage() {
     const response = await axios.post(login_url,
       values,
       {
-        headers: { 'Content-Type': 'application/json',  },
+        headers: { 'Accept': 'application/json' },
         //withCredentials: true
       })
       .catch((error) => {
         if (error) {
           console.log(error.response.data.message)
+          setError(error.response.data.message)
         }
       })
 
@@ -77,7 +78,7 @@ export default function LoginPage() {
     <>
       <div className="flex justify-center items-center h-screen w-screen md:bg-slate-100 text-primary-main">
         <div className="p-4 md:p-16 bg-white w-full md:w-[524px] rounded-lg">
-          <div className={`${error ? "bg-red-50 text-red-600 px-4 py-4 rounded-lg mb-8" : ""}`}>{error ? error : ""}</div>
+          <div className={`${error ? "bg-red-50 text-red-600 px-4 py-4 text-sm rounded-lg mb-8" : ""}`}><span className="flex gap-2 items-center">{error? <MdOutlineErrorOutline/> : null} {error ?  error : ""}</span></div>
           <form onSubmit={formik.handleSubmit}>
             {/* the logo section of the form goes here */}
             <UccLogo />
