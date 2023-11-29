@@ -25,7 +25,7 @@ export default {
     },
   },
   plugins: [
-    require('prettier-plugin-tailwindcss')
+    // require('prettier-plugin-tailwindcss')
   
   ],
 }

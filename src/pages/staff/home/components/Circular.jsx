@@ -32,8 +32,15 @@ const getCircularData = async () => {
   })
 
   if (response) {
-    console.log(response.data)
-    setCirculars(response.data)
+    console.log(response.data.staff_cat_circular)
+    const staff_cat_circular = response.data.staff_cat_circular
+    const staff_included_circular = response.data.staff_included_circular
+    const unit_head_circular = response.data.unit_head_circular
+    const unit_members_circular = response.data.unit_members_circular
+    const job_cat_circular = response.data.job_cat_circular
+    const all_circulars = {...staff_cat_circular,...staff_included_circular,...unit_head_circular,...unit_members_circular,...job_cat_circular} 
+    console.log(all_circulars)
+    //setCirculars(response.data)
   }
 }
 
@@ -62,7 +69,7 @@ const getCircularData = async () => {
               {isLoading ? <LoadingSpinner/> : errorMessage}
               {  isLoading == false && errorMessage == '' &&
                 <div>
-                {circulars.map((circular)=>{
+                {/* {circulars?.map((circular)=>{
                   return(
                     <a key={circular.id}
                 href={`https://staffportal.ucc.edu.gh${circular.attachment}`}
@@ -72,7 +79,7 @@ const getCircularData = async () => {
                 
               </a>
                   )
-                })}
+                })} */}
               </div>
               }
           </div>

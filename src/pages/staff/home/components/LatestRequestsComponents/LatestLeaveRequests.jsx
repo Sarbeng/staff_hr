@@ -10,7 +10,7 @@ export default function  LatestLeaveRequests () {
     // assigning our data to a viarable
     const auth = useAuthUser();
     // setting our leave url
-    const leave_url = "/leave";
+    const leave_url = "/latest_leave";
     //getting our auth token
     const token = auth().token;
   
