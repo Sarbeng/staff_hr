@@ -7,10 +7,48 @@ import * as Yup from "yup";
 import Button from "../../../../components/Button";
 import { useNavigate } from "react-router-dom"
 import { MdOutlineChevronRight } from "react-icons/md";
-
+import axios from "../../../../api/axios";
+import { useAuthUser } from "react-auth-kit";
+import { useEffect, useState } from "react";
 
 export default function PromotionPage1() {
     const navigate = useNavigate()
+
+    //link to api
+    const url = '/display_data';
+
+    //usestate for promotion data
+    const [promotionData,setPromotionData] = useState(null)
+    // getting the select options from data
+    const [selectOptions, setSelectOptions] = useState(null)
+
+    //getting token
+    const auth  = useAuthUser();
+    const token = auth().token; 
+
+    const getPromotionData = async () => {
+        const response = await axios.get(url,{
+            headers: {
+                Authorization: `Bearer ${token}`,
+                'Accept' : "application/json"
+            }
+        }).catch((error) => {
+            console.log(error.response.data)
+        })
+
+        if (response) {
+            console.log(response.data.user_data[0])
+            setPromotionData(response.data.user_data[0])
+            setSelectOptions(response.data.job_ranks[0])
+            console.log(promotionData)
+            console.log(selectOptions)
+
+        }
+    }
+
+    useEffect(() => {
+        getPromotionData()
+    },[])
 
     const formik = useFormik({
         initialValues: {
