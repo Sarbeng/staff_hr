@@ -7,12 +7,36 @@ import { useNavigate } from "react-router-dom"
 import { MdOutlineChevronRight } from "react-icons/md";
 import axios from "../../../../api/axios";
 import { useAuthUser } from "react-auth-kit";
-import { useEffect, useState } from "react";
+import { useEffect, useState,useRef } from "react";
 import Select from "react-select";
 
 
 export default function PromotionPage1() {
     const navigate = useNavigate()
+
+    //using useRef to access the input data
+    const promotionRankInputElement =useRef()
+    const typeOfPromotionInputeElement = useRef()
+    const deptInputElement = useRef()
+    const collegeInputElement = useRef()
+    const emailInputElement = useRef()
+    const phoneInputElement = useRef()
+    const presentRankInputElement = useRef()
+    const presentRankEffectiveDateInputElement = useRef()
+    const presentPositionHeldInputElement =useRef()
+    const positionHeldEffectiveDateInputElement = useRef()
+    
+   
+
+    const handleSubmit = async (event) => {
+        event.preventDefault()
+
+        const data = {
+            //take note of the fact that position_id in database is equal to job_id
+            present_rank_ifany: promotionRankInputElement.current?.value
+        }
+        console.log(data)
+    }
 
     //link to api
     const url = '/display_data';
@@ -22,15 +46,19 @@ export default function PromotionPage1() {
     // getting the select options from data
     const [selectOptions, setSelectOptions] = useState(null)
 
-    const options = [
-        { value: 'chocolate', label: 'Chocolate' },
-        { value: 'strawberry', label: 'Strawberry' },
-        { value: 'vanilla', label: 'Vanilla' },
-      ];
+    // const options = [
+    //     { value: 'chocolate', label: 'Chocolate' },
+    //     { value: 'strawberry', label: 'Strawberry' },
+    //     { value: 'vanilla', label: 'Vanilla' },
+    //   ];
 
-      const [selectedOption, setSelectedOption] = useState(null);
+    //   const [selectedOption, setSelectedOption] = useState(null);
 
-      
+      //type of promotion
+      const type_of_promotion = [
+        {id:1,type:"REGULAR PROMOTION"},
+        {id:2,type:"ACCELERATED PROMOTION"},
+      ]
 
     //getting token
     const auth  = useAuthUser();
@@ -76,54 +104,90 @@ export default function PromotionPage1() {
 
                         </div>
                     </section>
-                    <form >
+                    <form  onSubmit={handleSubmit}>
                         <section id="inputs" className="flex flex-col gap-4">
-                            <div id="inputGroup">
-                                <label className="capitalize" htmlFor="email">
-                                    Promotion to the rank of
+                            
+                            <div className="flex gap-4 flex-col md:flex-row">
+                            <div id="inputGroup" className="flex flex-col  md:w-1/2" >
+                            <label className="capitalize" htmlFor="email">
+                                    Promotion to the Rank of:
                                 </label>
-                                {/* Tried a select dropdown select here */}
-                                {/* <Select
-                                className="  mt-2 mb-2 h-12 border text-sm border-primary-border rounded-lg w-full py-2 px-3 text-primary-main  border-primary-border focus-within:outline-none  focus-within:border-primary-focused focus-within:ring-1 shadow-sm focus-within:ring-primary-focused  bg-white"
-        defaultValue={selectedOption}
-        onChange={setSelectedOption}
-        options={selectOptions}
-      /> */}
+                           
+     
                                 <select 
                               className={` mt-2 mb-2 h-12 border text-sm border-primary-border rounded-lg w-full py-2 px-3 text-primary-main  border-primary-border focus-within:outline-none  focus-within:border-primary-focused focus-within:ring-1 shadow-sm focus-within:ring-primary-focused  bg-white`}
                                     name="aspiring_rank"
-                                   
+                                   ref={promotionRankInputElement}
                                     
                                     >
-                                    <option selected disabled>Select Rank</option>
+                                  <option selected disabled>Select Promotion Rank</option>
                                     {selectOptions?.map((options) => {
                                         return <option>{options.title}</option>
                                     })}
-                                    <option>Administrator 2</option>
-                                </select>
                             
-                            </div>
-                            <div>
-                                <TextInput
-                                    inputStyle={"default"}
-                                    name="department"
-                                    type="text"
-                                    label="Department"
-                
-                                    value={promotionData?.directorate} 
-                                    />
-                            </div>
-                            <div>
-                                <TextInput
-                                      inputStyle={"default"}
-                                    label="College/ Directorate"
-                                    name="directorate"
-                                    type="text"
+                                </select>
+                                  
+                                </div>
+                                <div id="inputGroup" className="flex flex-col  md:w-1/2" >
+                                <label className="capitalize" htmlFor="email">
+                                    Type of Promotion
+                                </label>
+                           
+     
+                                <select 
+                              className={` mt-2 mb-2 h-12 border text-sm border-primary-border rounded-lg w-full py-2 px-3 text-primary-main  border-primary-border focus-within:outline-none  focus-within:border-primary-focused focus-within:ring-1 shadow-sm focus-within:ring-primary-focused  bg-white`}
+                                    name="aspiring_rank"
+                                   ref={typeOfPromotionInputeElement}
+                                    
+                                    >
+                                         <option selected disabled>Select type</option>
+                                    {type_of_promotion?.map((options) => {
+                                        return <option>{options.type}</option>
+                                    })}
+                            
+                                    
+                            
+                                </select>
+                                  
+                                </div>
+                               
                                 
-                                    value={promotionData?.directorate} 
-                                />
-        
                             </div>
+                            <div className="flex gap-4 flex-col md:flex-row">
+                            <div id="inputGroup" className="flex flex-col  md:w-1/2" >
+                                    <label className="capitalize" htmlFor="email">
+                                    Department
+                                    </label>
+                                    <input
+                                        className={` mt-2 mb-2 h-12 border text-sm border-primary-border rounded-lg w-full py-2 px-3 text-primary-main  border-primary-border focus-within:outline-none  focus-within:border-primary-focused focus-within:ring-1 shadow-sm focus-within:ring-primary-focused  bg-white`}
+                                        name="department"
+                                        type="text"
+                                        ref={deptInputElement}
+                                    value={promotionData?.directorate} 
+                                        placeholder="Not set"
+
+                                    />
+                                  
+                                </div>
+                                <div id="inputGroup" className="flex flex-col  md:w-1/2" >
+                                    <label className="capitalize" htmlFor="email">
+                                    College/ Directorate
+                                    </label>
+                                    <input
+                                        className={` mt-2 mb-2 h-12 border text-sm border-primary-border rounded-lg w-full py-2 px-3 text-primary-main  border-primary-border focus-within:outline-none  focus-within:border-primary-focused focus-within:ring-1 shadow-sm focus-within:ring-primary-focused  bg-white`}
+                                        name="directorate"
+                                        type="text"
+                                        ref={collegeInputElement}
+                                    value={promotionData?.directorate} 
+                                        placeholder="Not set"
+
+                                    />
+                                  
+                                </div>
+                               
+                                
+                            </div>
+                            
 
                             <div className="flex flex-col md:flex-row gap-4 w-full">
                                 <div id="inputGroup" className="flex flex-col  md:w-1/2" >
@@ -134,6 +198,7 @@ export default function PromotionPage1() {
                                         className={` mt-2 mb-2 h-12 border text-sm border-primary-border rounded-lg w-full py-2 px-3 text-primary-main  border-primary-border focus-within:outline-none  focus-within:border-primary-focused focus-within:ring-1 shadow-sm focus-within:ring-primary-focused  bg-white`}
                                         name="email"
                                         type="email"
+                                        ref={emailInputElement}
                                         value={promotionData?.ucc_mail}
                                         placeholder="Not set"
 
@@ -148,6 +213,7 @@ export default function PromotionPage1() {
                                         className={` mt-2 mb-2 h-12 border text-sm border-primary-border rounded-lg w-full py-2 px-3 text-primary-main  border-primary-border focus-within:outline-none  focus-within:border-primary-focused focus-within:ring-1 shadow-sm focus-within:ring-primary-focused  bg-white`}
                                         name="phone"
                                         type="number"
+                                        ref={phoneInputElement}
                                         value={promotionData?.phone}
                                         placeholder="Not set"
 
@@ -159,12 +225,13 @@ export default function PromotionPage1() {
                             <div className="flex flex-col md:flex-row  gap-4 w-full">
                                 <div id="inputGroup" className="flex flex-col md:w-1/2" >
                                     <label className="capitalize" htmlFor="email">
-                                        Present Position held (If any)
+                                        Present Rank
                                     </label>
                                     <input
                                         className={` mt-2 mb-2 h-12 border text-sm border-primary-border rounded-lg w-full py-2 px-3 text-primary-main  border-primary-border focus-within:outline-none  focus-within:border-primary-focused focus-within:ring-1 shadow-sm focus-within:ring-primary-focused  bg-white`}
                                         name="present_position"
                                         type="text"
+                                        ref={""}
                                         value={promotionData?.present_rank}
                                      
 
@@ -179,13 +246,43 @@ export default function PromotionPage1() {
                                           className={` mt-2 mb-2 h-12 border text-sm border-primary-border rounded-lg w-full py-2 px-3 text-primary-main  border-primary-border focus-within:outline-none  focus-within:border-primary-focused focus-within:ring-1 shadow-sm focus-within:ring-primary-focused  bg-white`}
                                         name="effective_date"
                                         type="date"
+                                        ref={presentRankEffectiveDateInputElement}
                                         value={promotionData?.date_of_rank}
                                        
                                     />
                                    
                                 </div>
                             </div>
+                            <div className="flex flex-col md:flex-row  gap-4 w-full">
+                                <div id="inputGroup" className="flex flex-col md:w-1/2" >
+                                    <label className="capitalize" htmlFor="email">
+                                        Present Position held (If any)
+                                    </label>
+                                    <input
+                                        className={` mt-2 mb-2 h-12 border text-sm border-primary-border rounded-lg w-full py-2 px-3 text-primary-main  border-primary-border focus-within:outline-none  focus-within:border-primary-focused focus-within:ring-1 shadow-sm focus-within:ring-primary-focused  bg-white`}
+                                        name="present_position"
+                                        type="text"
+                                        ref={presentPositionHeldInputElement}
+                                     
 
+                                    />
+                                  
+                                </div>
+                                <div id="inputGroup" className="flex flex-col md:w-1/2" >
+                                    <label className="capitalize" htmlFor="email">
+                                        Effective Date
+                                    </label>
+                                    <input
+                                          className={` mt-2 mb-2 h-12 border text-sm border-primary-border rounded-lg w-full py-2 px-3 text-primary-main  border-primary-border focus-within:outline-none  focus-within:border-primary-focused focus-within:ring-1 shadow-sm focus-within:ring-primary-focused  bg-white`}
+                                        name="effective_date"
+                                        type="date"
+                                        ref={positionHeldEffectiveDateInputElement}
+
+                                       
+                                    />
+                                   
+                                </div>
+                            </div>
                         </section>
                         <section id="buttonSection" className="flex w-full gap-4 mb-2 justify-center items-center md:items-end md:justify-end">
                            
