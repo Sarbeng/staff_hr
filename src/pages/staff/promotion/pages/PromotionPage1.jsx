@@ -63,10 +63,10 @@ export default function PromotionPage1() {
         if (response) {
             console.log(response.data.insert_promotion_data.id)
             //storing id into localstorage for future use in the other pages
-            //localStorage.setItem('promotion_data',response.data.insert_promotion_data.id)
-            //localStorage.setItem('staff_promotion_data',response.data.insert_staff_promotion.id)
+            localStorage.setItem('promotion_data',response.data.insert_promotion_data.id)
+            localStorage.setItem('staff_promotion_data',response.data.insert_staff_promotion.id)
             navigate('/dashboard/promotionpage2')
-        }
+        }x
     }
 
     //link to api

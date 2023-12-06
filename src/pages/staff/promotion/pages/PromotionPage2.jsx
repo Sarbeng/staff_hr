@@ -5,12 +5,13 @@ import * as Yup from "yup";
 import Button from "../../../../components/Button";
 import { useNavigate } from "react-router-dom"
 import { MdOutlineChevronLeft, MdOutlineChevronRight, MdOutlineInfo } from "react-icons/md";
+import { useEffect } from "react";
 
 
 export default function PromotionPage2() {
     const navigate = useNavigate();
     const handleBack = () => {
-        navigate('/promotionPage1')
+        navigate('dashboard/promotionPage1')
     }
 
     const formik = useFormik({
@@ -27,9 +28,31 @@ export default function PromotionPage2() {
         }),
         onSubmit: (values) => {
             alert(JSON.stringify(values, null, 2));
-            navigate('/dashboard/promotionPage3')
+            const promotion_data_id = localStorage.getItem('promotion_data')
+            const staff_promotion_id = localStorage.getItem('staff_promotion_data')
+
+            const localData ={
+                promo_id :  promotion_data_id,
+                staff_id : staff_promotion_id
+            }
+            const data = {
+            ...values,
+            promotion_data_id,
+            staff_promotion_id
+            }
+            console.log(
+                data
+            )
+            //navigate('/dashboard/promotionPage3')
+            
 
         }
+    })
+    useEffect(() => {
+        // const promotion_data_id = localStorage.getItem('promotion_data')
+        // const staff_promotion_id = localStorage.getItem('staff_promotion_data')
+        //console.log(promotion_data_id);
+        //console.log(staff_promotion_id);
     })
     return (
         <>
