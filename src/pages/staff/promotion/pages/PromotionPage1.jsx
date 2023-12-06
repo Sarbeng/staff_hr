@@ -33,7 +33,19 @@ export default function PromotionPage1() {
 
         const data = {
             //take note of the fact that position_id in database is equal to job_id
-            present_rank_ifany: promotionRankInputElement.current?.value
+            //take note of staff_promotion and promotion_data
+
+            //// this is the present rank if any section //////////
+            position_id : promotionRankInputElement.current?.value,
+            promo_comments : typeOfPromotionInputeElement.current?.value,
+            dept: deptInputElement.current?.value,
+            college: collegeInputElement.current?.value,
+            email: emailInputElement.current?.value,
+            phone: phoneInputElement.current?.value,
+            present_rank: presentRankInputElement.current?.value,
+            pr_edate : presentRankEffectiveDateInputElement.current?.value,
+            present_rank_ifany: promotionRankInputElement.current?.value,
+            pp_edate: positionHeldEffectiveDateInputElement.current?.value
         }
         console.log(data)
     }
@@ -45,6 +57,7 @@ export default function PromotionPage1() {
     const [promotionData,setPromotionData] = useState(null)
     // getting the select options from data
     const [selectOptions, setSelectOptions] = useState(null)
+    const [college, setCollege] = useState(null)
 
     // const options = [
     //     { value: 'chocolate', label: 'Chocolate' },
@@ -75,11 +88,13 @@ export default function PromotionPage1() {
         })
 
         if (response) {
-            console.log(response.data.job_ranks)
+            //console.log(response.data.job_ranks)
+            //console.log(response.data.college[0].college)
             setPromotionData(response.data.user_data[0])
             setSelectOptions(response.data.job_ranks)
-            console.log(promotionData)
-            console.log(selectOptions)
+            setCollege(response.data.college[0].college)
+            //console.log(promotionData)
+           // console.log(selectOptions)
 
         }
     }
@@ -115,14 +130,14 @@ export default function PromotionPage1() {
                            
      
                                 <select 
-                              className={` mt-2 mb-2 h-12 border text-sm border-primary-border rounded-lg w-full py-2 px-3 text-primary-main  border-primary-border focus-within:outline-none  focus-within:border-primary-focused focus-within:ring-1 shadow-sm focus-within:ring-primary-focused  bg-white`}
+                              className={` mt-2 mb-2 h-12 border text-sm  rounded-lg w-full py-2 px-3 text-primary-main  border-primary-border focus-within:outline-none  focus-within:border-primary-focused focus-within:ring-1 shadow-sm focus-within:ring-primary-focused  bg-white`}
                                     name="aspiring_rank"
                                    ref={promotionRankInputElement}
                                     
                                     >
                                   <option selected disabled>Select Promotion Rank</option>
                                     {selectOptions?.map((options) => {
-                                        return <option>{options.title}</option>
+                                        return <option key={options.position_id} value={options.position_id}>{options.title}</option>
                                     })}
                             
                                 </select>
@@ -140,9 +155,9 @@ export default function PromotionPage1() {
                                    ref={typeOfPromotionInputeElement}
                                     
                                     >
-                                         <option selected disabled>Select type</option>
+                                         <option selected  disabled>Select type</option>
                                     {type_of_promotion?.map((options) => {
-                                        return <option>{options.type}</option>
+                                        return <option key={options.type} value={options.type}>{options.type}</option>
                                     })}
                             
                                     
@@ -178,7 +193,7 @@ export default function PromotionPage1() {
                                         name="directorate"
                                         type="text"
                                         ref={collegeInputElement}
-                                    value={promotionData?.directorate} 
+                                    value={college} 
                                         placeholder="Not set"
 
                                     />
@@ -231,7 +246,7 @@ export default function PromotionPage1() {
                                         className={` mt-2 mb-2 h-12 border text-sm border-primary-border rounded-lg w-full py-2 px-3 text-primary-main  border-primary-border focus-within:outline-none  focus-within:border-primary-focused focus-within:ring-1 shadow-sm focus-within:ring-primary-focused  bg-white`}
                                         name="present_position"
                                         type="text"
-                                        ref={""}
+                                        ref={presentRankInputElement}
                                         value={promotionData?.present_rank}
                                      
 
