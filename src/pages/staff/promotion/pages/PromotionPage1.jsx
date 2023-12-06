@@ -31,6 +31,9 @@ export default function PromotionPage1() {
     const handleSubmit = async (event) => {
         event.preventDefault()
 
+        //url to post to
+        const post_url = '/promotion_insert'
+
         const data = {
             //take note of the fact that position_id in database is equal to job_id
             //take note of staff_promotion and promotion_data
@@ -47,7 +50,23 @@ export default function PromotionPage1() {
             present_rank_ifany: promotionRankInputElement.current?.value,
             pp_edate: positionHeldEffectiveDateInputElement.current?.value
         }
-        console.log(data)
+        //console.log(data)
+        const response = await axios.post(post_url,{data},{
+            headers: {
+                Authorization: `Bearer ${token}`,
+                "Accept" : "application/json"
+            }
+        }).catch((error) => {
+            console.log(error)
+        })
+
+        if (response) {
+            console.log(response.data.insert_promotion_data.id)
+            //storing id into localstorage for future use in the other pages
+            //localStorage.setItem('promotion_data',response.data.insert_promotion_data.id)
+            //localStorage.setItem('staff_promotion_data',response.data.insert_staff_promotion.id)
+            navigate('/dashboard/promotionpage2')
+        }
     }
 
     //link to api
