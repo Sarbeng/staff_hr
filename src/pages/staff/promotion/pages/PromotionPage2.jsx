@@ -6,27 +6,31 @@ import Button from "../../../../components/Button";
 import { useNavigate } from "react-router-dom"
 import { MdOutlineChevronLeft, MdOutlineChevronRight, MdOutlineInfo } from "react-icons/md";
 import { useEffect } from "react";
-
+import axios from "../../../../api/axios";
+import { useAuthUser } from "react-auth-kit";
 
 export default function PromotionPage2() {
+    //getting user token
+    const auth = useAuthUser();
+    const token = auth().token;
     const navigate = useNavigate();
     const handleBack = () => {
-        navigate('dashboard/promotionPage1')
+        navigate('/dashboard/promotionPage1')
     }
 
     const formik = useFormik({
         initialValues: {
-            first_degree: "",
-            postgraduate_degree: "",
-            awards: "",
+            first_degree_details: "",
+            pg_degree_details: "",
+            prizes_grant_award: "",
         },
         validationSchema: Yup.object({
-            first_degree: Yup.string().required("Please add details of your first degrees"),
-            postgraduate_degree: Yup.string().required("Please add details of your post graduate degrees"),
-            awards: Yup.string().required("Please add details of your awards and prizes"),
+            first_degree_details: Yup.string().required("Please add details of your first degrees"),
+            pg_degree_details: Yup.string().required("Please add details of your post graduate degrees"),
+            prizes_grant_award: Yup.string().required("Please add details of your awards and prizes"),
 
         }),
-        onSubmit: (values) => {
+        onSubmit: async (values) => {
             alert(JSON.stringify(values, null, 2));
             const promotion_data_id = localStorage.getItem('promotion_data')
             const staff_promotion_id = localStorage.getItem('staff_promotion_data')
@@ -43,6 +47,23 @@ export default function PromotionPage2() {
             console.log(
                 data
             )
+
+            //connecting to axios and posting to update database
+                const update_url = '/promotion_update_1'
+
+                const response = await axios.post(update_url,{...data},{
+                    headers: {
+                        Authorization:    `Bearer ${token}`,
+                        "Accept": "application/json"
+                    }
+                }).catch((error) => {
+                    console.log(error)
+                })
+
+                if (response) {
+                    console.log(response)
+                }
+
             //navigate('/dashboard/promotionPage3')
             
 
@@ -76,16 +97,16 @@ export default function PromotionPage2() {
                                     Details of First Degrees (state when and where obtained, Class and / or Special distinctions (if any)
                                 </label>
                                 <textarea
-                                    className={`mt-2 mb-2 h-24 border text-sm border-primary-border rounded-lg w-full py-2 px-3 text-primary-main ${formik.touched.first_degree && formik.errors.first_degree ? "border-red-500 focus-within:outline-none  focus-within:border-red-500 focus-within:ring-1 shadow-sm focus-within:ring-red-500" : "border-primary-border focus-within:outline-none  focus-within:border-primary-focused focus-within:ring-1 shadow-sm focus-within:ring-primary-focused"}  bg-white`}
-                                    name="first_degree"
+                                    className={`mt-2 mb-2 h-24 border text-sm border-primary-border rounded-lg w-full py-2 px-3 text-primary-main ${formik.touched.first_degree_details && formik.errors.first_degree_details ? "border-red-500 focus-within:outline-none  focus-within:border-red-500 focus-within:ring-1 shadow-sm focus-within:ring-red-500" : "border-primary-border focus-within:outline-none  focus-within:border-primary-focused focus-within:ring-1 shadow-sm focus-within:ring-primary-focused"}  bg-white`}
+                                    name="first_degree_details"
 
-                                    value={formik.values.first_degree}
+                                    value={formik.values.first_degree_details}
                                     onBlur={formik.handleBlur}
                                     onChange={formik.handleChange}
 
                                 />
-                                  {formik.touched.first_degree && formik.errors.first_degree ? (
-                                    <div className="flex items-center gap-2 text-red-600"><MdOutlineInfo/> {formik.errors.first_degree}</div>
+                                  {formik.touched.first_degree_details && formik.errors.first_degree_details ? (
+                                    <div className="flex items-center gap-2 text-red-600"><MdOutlineInfo/> {formik.errors.first_degree_details}</div>
                                 ) : null}
                             </div>
                             <div id="inputGroup">
@@ -93,16 +114,16 @@ export default function PromotionPage2() {
                                 Details of Post Graduate Degrees (state when and where obtained, class and/or special distinctions (if any)
                                 </label>
                                 <textarea
-                                    className={`mt-2 mb-2 h-24 border text-sm border-primary-border rounded-lg w-full py-2 px-3 text-primary-main ${formik.touched.postgraduate_degree && formik.errors.postgraduate_degree ? "border-red-500 focus-within:outline-none  focus-within:border-red-500 focus-within:ring-1 shadow-sm focus-within:ring-red-500" : "border-primary-border focus-within:outline-none  focus-within:border-primary-focused focus-within:ring-1 shadow-sm focus-within:ring-primary-focused"}  bg-white`}
-                                    name="postgraduate_degree"
+                                    className={`mt-2 mb-2 h-24 border text-sm border-primary-border rounded-lg w-full py-2 px-3 text-primary-main ${formik.touched.pg_degree_details && formik.errors.pg_degree_details ? "border-red-500 focus-within:outline-none  focus-within:border-red-500 focus-within:ring-1 shadow-sm focus-within:ring-red-500" : "border-primary-border focus-within:outline-none  focus-within:border-primary-focused focus-within:ring-1 shadow-sm focus-within:ring-primary-focused"}  bg-white`}
+                                    name="pg_degree_details"
 
-                                    value={formik.values.postgraduate_degree}
+                                    value={formik.values.pg_degree_details}
                                     onBlur={formik.handleBlur}
                                     onChange={formik.handleChange}
 
                                 />
-  {formik.touched.postgraduate_degree && formik.errors.postgraduate_degree ? (
-                                    <div className="flex items-center gap-2 text-red-600"><MdOutlineInfo/> {formik.errors.postgraduate_degree}</div>
+  {formik.touched.pg_degree_details && formik.errors.pg_degree_details ? (
+                                    <div className="flex items-center gap-2 text-red-600"><MdOutlineInfo/> {formik.errors.pg_degree_details}</div>
                                 ) : null}
                             </div>
                             <div id="inputGroup">
@@ -110,16 +131,16 @@ export default function PromotionPage2() {
                                 Prizes, Travel Grants and Awards; with Dates
                                 </label>
                                 <textarea
-                                    className={`mt-2 mb-2 h-24 border text-sm border-primary-border rounded-lg w-full py-2 px-3 text-primary-main ${formik.touched.awards && formik.errors.awards ? "border-red-500 focus-within:outline-none  focus-within:border-red-500 focus-within:ring-1 shadow-sm focus-within:ring-red-500" : "border-primary-border focus-within:outline-none  focus-within:border-primary-focused focus-within:ring-1 shadow-sm focus-within:ring-primary-focused"}  bg-white`}
-                                    name="awards"
+                                    className={`mt-2 mb-2 h-24 border text-sm border-primary-border rounded-lg w-full py-2 px-3 text-primary-main ${formik.touched.prizes_grant_award && formik.errors.prizes_grant_award ? "border-red-500 focus-within:outline-none  focus-within:border-red-500 focus-within:ring-1 shadow-sm focus-within:ring-red-500" : "border-primary-border focus-within:outline-none  focus-within:border-primary-focused focus-within:ring-1 shadow-sm focus-within:ring-primary-focused"}  bg-white`}
+                                    name="prizes_grant_award"
 
-                                    value={formik.values.awards}
+                                    value={formik.values.prizes_grant_award}
                                     onBlur={formik.handleBlur}
                                     onChange={formik.handleChange}
 
                                 />
-                                {formik.touched.awards && formik.errors.awards ? (
-                                    <div className="flex items-center gap-2 text-red-600"><MdOutlineInfo/> {formik.errors.awards}</div>
+                                {formik.touched.prizes_grant_award && formik.errors.prizes_grant_award ? (
+                                    <div className="flex items-center gap-2 text-red-600"><MdOutlineInfo/> {formik.errors.prizes_grant_award}</div>
                                 ) : null}
                             </div>
 
@@ -131,7 +152,7 @@ export default function PromotionPage2() {
                         <Button buttonStyle="bg-white border border-primary-border shadow text-primary-main w-full" onClick={handleBack}><MdOutlineChevronLeft/> Back</Button>
                         </div>
                         <div className="w-1/2">
-                        <Button buttonStyle="bg-primary-main text-white w-full">Save & Continue <MdOutlineChevronRight/></Button>
+                        <Button type="submit" buttonStyle="bg-primary-main text-white w-full">Save & Continue <MdOutlineChevronRight/></Button>
                            
                         </div>
                         

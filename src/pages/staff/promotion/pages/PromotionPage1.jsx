@@ -8,11 +8,15 @@ import { MdOutlineChevronRight } from "react-icons/md";
 import axios from "../../../../api/axios";
 import { useAuthUser } from "react-auth-kit";
 import { useEffect, useState,useRef } from "react";
-import Select from "react-select";
+import { useFormik } from "formik";
+import * as Yup from "yup"
 
 
 export default function PromotionPage1() {
     const navigate = useNavigate()
+
+    const auth  = useAuthUser();
+    const token = auth().token; 
 
     //using useRef to access the input data
     const promotionRankInputElement =useRef()
@@ -93,8 +97,7 @@ export default function PromotionPage1() {
       ]
 
     //getting token
-    const auth  = useAuthUser();
-    const token = auth().token; 
+   
 
     const getPromotionData = async () => {
         const response = await axios.get(url,{
