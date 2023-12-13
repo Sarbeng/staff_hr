@@ -61,7 +61,9 @@ export default function PromotionPage2() {
                 })
 
                 if (response) {
+                   // alert("Another")
                     console.log(response)
+                    navigate('/dashboard/promotionpage3')
                 }
 
             //navigate('/dashboard/promotionPage3')

@@ -5,7 +5,8 @@ import * as Yup from "yup";
 import Button from "../../../../components/Button";
 import { useNavigate } from "react-router-dom"
 import { MdOutlineChevronLeft, MdOutlineChevronRight, MdOutlineInfo } from "react-icons/md";
-
+import axios from "../../../../api/axios";
+import { useAuthUser } from "react-auth-kit";
 
 export default function PromotionPage3() {
     const navigate = useNavigate();
@@ -13,21 +14,64 @@ export default function PromotionPage3() {
         navigate('/dashboard/promotionPage2')
     }
 
+    //retrieve the user token
+    const auth = useAuthUser();
+    const token = auth().token;
+
     const formik = useFormik({
         initialValues: {
-            previous_posts_before: "",
-            previous_posts_in_uni: "",
-            conferences: "",
+            previous_post_duties: "",
+            teaching_duties_experience: "",
+            conference_seminars_etc: "",
         },
         validationSchema: Yup.object({
-            previous_posts_before: Yup.string().required("Please add previous posts And Duties held before joining this university"),
-            previous_posts_in_uni: Yup.string().required("Please add Posts And Duties held in this university"),
-            conferences: Yup.string().required("Please add Particulars Of Conferences"),
+            previous_post_duties: Yup.string().required("Please add previous posts And Duties held before joining this university"),
+            teaching_duties_experience: Yup.string().required("Please add Posts And Duties held in this university"),
+            conference_seminars_etc: Yup.string().required("Please add Particulars Of Conferences"),
 
         }),
-        onSubmit: (values) => {
+        onSubmit: async (values) => {
             alert(JSON.stringify(values, null, 2));
-            navigate('/promotionPage4')
+            const promotion_data_id = localStorage.getItem('promotion_data')
+            const staff_promotion_id = localStorage.getItem('staff_promotion_data')
+
+            const localData ={
+                promo_id :  promotion_data_id,
+                staff_id : staff_promotion_id
+            }
+            const data = {
+            ...values,
+            promotion_data_id,
+            staff_promotion_id
+            }
+            console.log(
+                data
+            )
+
+            //connecting to axios and posting to update database
+                const update_url = '/promotion_update_2'
+
+                const response = await axios.post(update_url,{...data},{
+                    headers: {
+                        Authorization:    `Bearer ${token}`,
+                        "Accept": "application/json"
+                    }
+                }).catch((error) => {
+                    console.log(error)
+                })
+
+                if (response) {
+                   // alert("Another")
+                    console.log(response)
+                   // navigate('/dashboard/promotionpage4')
+                }
+
+            //navigate('/dashboard/promotionPage3')
+            
+
+        
+
+           // navigate('/promotionPage4')
 
         }
     })
@@ -53,16 +97,16 @@ export default function PromotionPage3() {
                                 Previous Posts and Duties held, with Dates, before joining the University
                                 </label>
                                 <textarea
-                                    className={`mt-2 mb-2 h-24 border text-sm border-primary-border rounded-lg w-full py-2 px-3 text-primary-main ${formik.touched.previous_posts_before && formik.errors.previous_posts_before ? "border-red-500 focus-within:outline-none  focus-within:border-red-500 focus-within:ring-1 shadow-sm focus-within:ring-red-500" : "border-primary-border focus-within:outline-none  focus-within:border-primary-focused focus-within:ring-1 shadow-sm focus-within:ring-primary-focused"}  bg-white`}
-                                    name="previous_posts_before"
+                                    className={`mt-2 mb-2 h-24 border text-sm border-primary-border rounded-lg w-full py-2 px-3 text-primary-main ${formik.touched.previous_post_duties && formik.errors.previous_post_duties ? "border-red-500 focus-within:outline-none  focus-within:border-red-500 focus-within:ring-1 shadow-sm focus-within:ring-red-500" : "border-primary-border focus-within:outline-none  focus-within:border-primary-focused focus-within:ring-1 shadow-sm focus-within:ring-primary-focused"}  bg-white`}
+                                    name="previous_post_duties"
 
-                                    value={formik.values.previous_posts_before}
+                                    value={formik.values.previous_post_duties}
                                     onBlur={formik.handleBlur}
                                     onChange={formik.handleChange}
 
                                 />
-                                  {formik.touched.previous_posts_before && formik.errors.previous_posts_before ? (
-                                    <div className="flex items-center gap-2 text-red-600"><MdOutlineInfo/> {formik.errors.previous_posts_before}</div>
+                                  {formik.touched.previous_post_duties && formik.errors.previous_post_duties ? (
+                                    <div className="flex items-center gap-2 text-red-600"><MdOutlineInfo/> {formik.errors.previous_post_duties}</div>
                                 ) : null}
                             </div>
                             <div id="inputGroup">
@@ -70,16 +114,16 @@ export default function PromotionPage3() {
                                 Posts and Duties with Dates, held in this University
                                 </label>
                                 <textarea
-                                    className={`mt-2 mb-2 h-24 border text-sm border-primary-border rounded-lg w-full py-2 px-3 text-primary-main ${formik.touched.previous_posts_in_uni && formik.errors.previous_posts_in_uni ? "border-red-500 focus-within:outline-none  focus-within:border-red-500 focus-within:ring-1 shadow-sm focus-within:ring-red-500" : "border-primary-border focus-within:outline-none  focus-within:border-primary-focused focus-within:ring-1 shadow-sm focus-within:ring-primary-focused"}  bg-white`}
-                                    name="previous_posts_in_uni"
+                                    className={`mt-2 mb-2 h-24 border text-sm border-primary-border rounded-lg w-full py-2 px-3 text-primary-main ${formik.touched.teaching_duties_experience && formik.errors.teaching_duties_experience ? "border-red-500 focus-within:outline-none  focus-within:border-red-500 focus-within:ring-1 shadow-sm focus-within:ring-red-500" : "border-primary-border focus-within:outline-none  focus-within:border-primary-focused focus-within:ring-1 shadow-sm focus-within:ring-primary-focused"}  bg-white`}
+                                    name="teaching_duties_experience"
 
-                                    value={formik.values.previous_posts_in_uni}
+                                    value={formik.values.teaching_duties_experience}
                                     onBlur={formik.handleBlur}
                                     onChange={formik.handleChange}
 
                                 />
-  {formik.touched.previous_posts_in_uni && formik.errors.previous_posts_in_uni ? (
-                                    <div className="flex items-center gap-2 text-red-600"><MdOutlineInfo/> {formik.errors.previous_posts_in_uni}</div>
+  {formik.touched.teaching_duties_experience && formik.errors.teaching_duties_experience ? (
+                                    <div className="flex items-center gap-2 text-red-600"><MdOutlineInfo/> {formik.errors.teaching_duties_experience}</div>
                                 ) : null}
                             </div>
                             <div id="inputGroup">
@@ -88,16 +132,16 @@ export default function PromotionPage3() {
 read (if any)
                                 </label>
                                 <textarea
-                                    className={`mt-2 mb-2 h-24 border text-sm border-primary-border rounded-lg w-full py-2 px-3 text-primary-main ${formik.touched.conferences && formik.errors.conferences ? "border-red-500 focus-within:outline-none  focus-within:border-red-500 focus-within:ring-1 shadow-sm focus-within:ring-red-500" : "border-primary-border focus-within:outline-none  focus-within:border-primary-focused focus-within:ring-1 shadow-sm focus-within:ring-primary-focused"}  bg-white`}
-                                    name="conferences"
+                                    className={`mt-2 mb-2 h-24 border text-sm border-primary-border rounded-lg w-full py-2 px-3 text-primary-main ${formik.touched.conference_seminars_etc && formik.errors.conference_seminars_etc ? "border-red-500 focus-within:outline-none  focus-within:border-red-500 focus-within:ring-1 shadow-sm focus-within:ring-red-500" : "border-primary-border focus-within:outline-none  focus-within:border-primary-focused focus-within:ring-1 shadow-sm focus-within:ring-primary-focused"}  bg-white`}
+                                    name="conference_seminars_etc"
 
-                                    value={formik.values.conferences}
+                                    value={formik.values.conference_seminars_etc}
                                     onBlur={formik.handleBlur}
                                     onChange={formik.handleChange}
 
                                 />
-                                {formik.touched.conferences && formik.errors.conferences ? (
-                                    <div className="flex items-center gap-2 text-red-600"><MdOutlineInfo/> {formik.errors.conferences}</div>
+                                {formik.touched.conference_seminars_etc && formik.errors.conference_seminars_etc ? (
+                                    <div className="flex items-center gap-2 text-red-600"><MdOutlineInfo/> {formik.errors.conference_seminars_etc}</div>
                                 ) : null}
                             </div>
 
@@ -106,10 +150,10 @@ read (if any)
                         </section>
                         <section id="buttonSection" className="flex w-full gap-4">
                         <div className="w-1/2">
-                        <Button buttonStyle="bg-white border border-primary-border shadow text-primary-main w-full" onClick={handleBack}><MdOutlineChevronLeft/> Back</Button>
+                        <Button type="button" buttonStyle="bg-white border border-primary-border shadow text-primary-main w-full" onClick={handleBack}><MdOutlineChevronLeft/> Back</Button>
                         </div>
                         <div className="w-1/2">
-                        <Button buttonStyle="bg-primary-main text-white w-full">Save & Continue <MdOutlineChevronRight/></Button>
+                        <Button type="submit" buttonStyle="bg-primary-main text-white w-full">Save & Continue <MdOutlineChevronRight/></Button>
                            
                         </div>
                         

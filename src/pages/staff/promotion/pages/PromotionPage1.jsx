@@ -51,11 +51,11 @@ export default function PromotionPage1() {
             phone: phoneInputElement.current?.value,
             present_rank: presentRankInputElement.current?.value,
             pr_edate : presentRankEffectiveDateInputElement.current?.value,
-            present_rank_ifany: promotionRankInputElement.current?.value,
+            present_rank_ifany: presentPositionHeldInputElement.current?.value,
             pp_edate: positionHeldEffectiveDateInputElement.current?.value
         }
         //console.log(data)
-        const response = await axios.post(post_url,{data},{
+        const response = await axios.post(post_url,data,{
             headers: {
                 Authorization: `Bearer ${token}`,
                 "Accept" : "application/json"
@@ -65,12 +65,13 @@ export default function PromotionPage1() {
         })
 
         if (response) {
+            alert(JSON.stringify(response.data,null,2))
             console.log(response.data.insert_promotion_data.id)
             //storing id into localstorage for future use in the other pages
             localStorage.setItem('promotion_data',response.data.insert_promotion_data.id)
             localStorage.setItem('staff_promotion_data',response.data.insert_staff_promotion.id)
             navigate('/dashboard/promotionpage2')
-        }x
+        }
     }
 
     //link to api
@@ -157,7 +158,7 @@ export default function PromotionPage1() {
                                    ref={promotionRankInputElement}
                                     
                                     >
-                                  <option selected disabled>Select Promotion Rank</option>
+                                  <option selected disabled value={0}>Select Promotion Rank</option>
                                     {selectOptions?.map((options) => {
                                         return <option key={options.position_id} value={options.position_id}>{options.title}</option>
                                     })}
@@ -172,7 +173,7 @@ export default function PromotionPage1() {
                            
      
                                 <select 
-                              className={` mt-2 mb-2 h-12 border text-sm border-primary-border rounded-lg w-full py-2 px-3 text-primary-main  border-primary-border focus-within:outline-none  focus-within:border-primary-focused focus-within:ring-1 shadow-sm focus-within:ring-primary-focused  bg-white`}
+                              className={` mt-2 mb-2 h-12 border text-sm rounded-lg w-full py-2 px-3 text-primary-main  border-primary-border focus-within:outline-none  focus-within:border-primary-focused focus-within:ring-1 shadow-sm focus-within:ring-primary-focused  bg-white`}
                                     name="aspiring_rank"
                                    ref={typeOfPromotionInputeElement}
                                     
